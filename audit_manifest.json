@@ -1,7 +1,8 @@
 {
   "manifest_version": "1.0.0",
-  "audit_date": "2026-07-11",
-  "commit_sha": "11b3e24d075a88543de278a7ec6691d37c1f7a5f",
+  "audit_date": "2026-07-12",
+  "commit_sha": "f5f710dd890305b7bd91c6de3b815a56871fae43",
+  "release_tag": "v0.3.28",
   "environment_repository": "https://github.com/Mnehmos/llm-driven-proof-search",
   "website_repository": "https://github.com/Mnehmos/openai-proof-formalization.website",
   "toolchain": "Lean 4.31.0, Mathlib v4.31.0",
@@ -21,9 +22,9 @@
       "Quot.sound"
     ],
     "step_02_native_decide": {
-      "status": "fully resolved, verified with standard Lean kernel rules (rfl)",
-      "is_load_bearing": true,
-      "capstone_dependency_chain": "verified unconditionally"
+      "status": "resolved; current artifact verified with rfl",
+      "is_load_bearing": false,
+      "capstone_dependency_chain": "not required; Step 06 independently proves the needed local identity"
     }
   },
   "steps": [

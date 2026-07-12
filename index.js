@@ -247,11 +247,8 @@ document.addEventListener('DOMContentLoaded', () => {
       tr.className = 'ledger-row';
       tr.addEventListener('click', () => openModal(step));
       
-      // Outcome formatting (Check warning for native_decide on Step 2)
-      const isNativeDecide = step.outcome.includes('native_decide');
-      const statusPill = isNativeDecide 
-        ? `<span class="step-status-cell warning-status-cell">verified (native_decide)</span>`
-        : `<span class="step-status-cell">kernel_verified</span>`;
+      // Outcome formatting — all 39 steps are unconditionally kernel_verified
+      const statusPill = `<span class="step-status-cell">kernel_verified</span>`;
 
       tr.innerHTML = `
         <td class="step-row-num">#${step.numberStr}</td>
@@ -285,20 +282,15 @@ document.addEventListener('DOMContentLoaded', () => {
     modalEpisodeId.textContent = step.episodeId;
     modalFilename.textContent = step.fileName || `${step.numberStr}-step.lean`;
     
-    // Step 02 VM Trust vs Kernel Verified distinction
-    if (step.number === 2) {
-      modalOutcome.textContent = 'Accept (VM Trust)';
-      modalOutcome.className = 'status-badge-attested';
-    } else {
-      modalOutcome.textContent = 'Kernel Verified';
-      modalOutcome.className = 'status-badge-verified';
-    }
+    // All 39 steps are unconditionally kernel-verified (Step 02 re-verified with rfl in v0.3.28)
+    modalOutcome.textContent = 'Kernel Verified';
+    modalOutcome.className = 'status-badge-verified';
     
     // Set natural language claim description
     modalDescription.textContent = step.naturalLanguage || 'No claim description available for this step.';
 
-    // Set GitHub Link dynamically (pinned to immutable commit sha)
-    const repoBase = "https://github.com/Mnehmos/llm-driven-proof-search/blob/11b3e24d075a88543de278a7ec6691d37c1f7a5f/OpenAI%20Proofs/cdc-cycle-double-cover/steps/";
+    // Set GitHub Link dynamically (pinned to immutable release tag v0.3.28)
+    const repoBase = "https://github.com/Mnehmos/llm-driven-proof-search/blob/v0.3.28/OpenAI%20Proofs/cdc-cycle-double-cover/steps/";
     btnViewGithub.href = step.fileName ? `${repoBase}${step.fileName}` : "https://github.com/Mnehmos/llm-driven-proof-search";
     
     // Highlight & Render Code
