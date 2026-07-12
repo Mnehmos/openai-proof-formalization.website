@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAI Proof Tracker & Proof Search MCP</title>
+  <meta name="description" content="Explore the formal verification of the Cycle Double Cover (CDC) theorem in Lean 4, powered by the AI Proof Search MCP server. View 39 kernel-verified steps and independent audit logs.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- Ambient glow backgrounds -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header -->
+  <header class="glass-header">
+    <div class="header-container">
+      <a href="#" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span class="logo-text">Proof<span class="highlight">Tracker</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#overview" class="nav-link">Overview</a>
+        <a href="#tracks" class="nav-link">Audit & Verification</a>
+        <a href="#mcp-showcase" class="nav-link">Proof Search MCP</a>
+        <a href="#cdc-theorem" class="nav-link">CDC Theorem</a>
+        <a href="#ledger" class="nav-link">Step Ledger</a>
+        <a href="#reasoning" class="nav-link">Agent Monologue</a>
+      </nav>
+      <div class="header-actions">
+        <span class="status-pill verified">
+          <span class="pulse-dot"></span>
+          39/39 Verified
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="overview">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-container">
+      <div class="hero-badge">
+        <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12h8M12 8v8"/>
+        </svg>
+        <span>Lean 4 Capstone Complete</span>
+      </div>
+      <h1 class="hero-title">
+        Formalizing OpenAI Challenges <br>with <span class="gradient-text">Proof Search MCP</span>
+      </h1>
+      <p class="hero-subtitle">
+        Fully automated, kernel-gated formal verification of the Cycle Double Cover (CDC) theorem. Built step-by-step with the custom proof-search MCP server and capable LLM agents.
+      </p>
+      <div class="hero-actions">
+        <a href="#ledger" class="btn btn-primary" id="btn-explore-ledger">
+          <span>Explore Verified Steps</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <a href="#mcp-showcase" class="btn btn-secondary" id="btn-view-mcp">
+          <span>MCP Specifications</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="metrics-grid">
+        <div class="metric-card glass">
+          <div class="metric-value" id="val-steps-verified">39</div>
+          <div class="metric-label">Steps Re-derived</div>
+        </div>
+        <div class="metric-card glass">
+          <div class="metric-value" id="val-axioms">0</div>
+          <div class="metric-label">Unintended Axioms</div>
+        </div>
+        <div class="metric-card glass">
+          <div class="metric-value" id="val-rate">100%</div>
+          <div class="metric-label">Lean Kernel Checked</div>
+        </div>
+        <div class="metric-card glass">
+          <div class="metric-value" id="val-env">v4.31.0</div>
+          <div class="metric-label">Lean Toolchain</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Track Comparison Section -->
+  <section class="tracks-section" id="tracks">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Two-Track Verification Protocol</h2>
+        <p class="section-subtitle">Comparing our independent kernel audit of the original repository against our step-by-step 0→1 autonomous re-derivation.</p>
+      </div>
+
+      <div class="tracks-grid">
+        <!-- Track 1 Card -->
+        <div class="track-card glass">
+          <div class="track-tag">Track 1</div>
+          <h3 class="track-title">Independent Kernel Audit</h3>
+          <div class="track-target">Target: <code class="target-code">openai/cdc-lean</code></div>
+          <p class="track-desc">
+            We cloned the repository, compiled the entire project under its pinned toolchain, and conducted a full axiom audit using Lean's environment checker. We did not trust the repository's claims of correctness and verified it independently.
+          </p>
+          <ul class="track-bullets">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="bullet-check">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Built successfully from source (1,727 jobs)</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="bullet-check">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Zero <code class="inline-code">sorry</code>, <code class="inline-code">admit</code>, or <code class="inline-code">native_decide</code> keywords</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="bullet-check">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Audited axioms: <code class="inline-code">[propext, Classical.choice, Quot.sound]</code></span>
+            </li>
+          </ul>
+          <button class="btn-card-action" id="btn-show-audit-log">View Audit Details</button>
+        </div>
+
+        <!-- Track 2 Card -->
+        <div class="track-card glass primary-glow">
+          <div class="track-tag highlight-tag">Track 2</div>
+          <h3 class="track-title">0→1 Step-by-Step Re-derivation</h3>
+          <div class="track-target">Target: <code class="target-code">proof-search-environment</code></div>
+          <p class="track-desc">
+            An autonomous agent generated, verified, and linked 39 distinct problems using the Proof Search MCP environment. Every lemma and capstone was accepted only by the local Lean verifier, logging every attempt.
+          </p>
+          <ul class="track-bullets">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="bullet-check highlight-check">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>39 modular steps, each kernel-verified</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="bullet-check highlight-check">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Self-contained theorem-as-hypothesis chaining</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="bullet-check highlight-check">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Full attempt history & diagnostic traces preserved</span>
+            </li>
+          </ul>
+          <button class="btn-card-action primary-btn" id="btn-show-rederivation-stats">View Re-derivation Stats</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof Search MCP Showcase -->
+  <section class="mcp-section" id="mcp-showcase">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">The Proof Search MCP Server</h2>
+        <p class="section-subtitle">A custom Model Context Protocol (MCP) server providing deep integration between LLMs and the interactive Lean 4 environment.</p>
+      </div>
+
+      <div class="mcp-layout">
+        <!-- Interactive Tool Explorer -->
+        <div class="mcp-tools-list">
+          <h3 class="subsection-title">Available Tools</h3>
+          <div class="tool-items">
+            <div class="tool-item active" data-tool="empirical_search">
+              <span class="tool-name">empirical_search</span>
+              <span class="tool-desc">Conducts search over proof candidates</span>
+            </div>
+            <div class="tool-item" data-tool="draft">
+              <span class="tool-name">draft</span>
+              <span class="tool-desc">Generates syntax-clean proof structures</span>
+            </div>
+            <div class="tool-item" data-tool="formalization_plan">
+              <span class="tool-name">formalization_plan</span>
+              <span class="tool-desc">Creates step-by-step math proof plans</span>
+            </div>
+            <div class="tool-item" data-tool="reasoning_log">
+              <span class="tool-name">reasoning_log</span>
+              <span class="tool-desc">Logs and recovers from compilation failures</span>
+            </div>
+            <div class="tool-item" data-tool="lean_declaration_lookup">
+              <span class="tool-name">lean_declaration_lookup</span>
+              <span class="tool-desc">Queries local Lean declarations by name</span>
+            </div>
+            <div class="tool-item" data-tool="mathlib_search_declarations">
+              <span class="tool-name">mathlib_search_declarations</span>
+              <span class="tool-desc">Searches Mathlib for library constants</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool Spec & Sandbox Console -->
+        <div class="mcp-console-container">
+          <div class="console-header">
+            <div class="console-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <span class="console-title" id="mcp-console-title">tool-spec: empirical_search</span>
+          </div>
+          <div class="console-body">
+            <div class="console-section">
+              <h4 class="console-heading">Description</h4>
+              <p class="console-text" id="mcp-tool-description">
+                Performs a stateful, iterative search to find valid proofs. Coordinates with the Lean compiler to verify candidates and branches based on diagnostic feedback.
+              </p>
+            </div>
+            <div class="console-section">
+              <h4 class="console-heading">Parameters</h4>
+              <pre class="console-code" id="mcp-tool-params">{
+  "problem_id": "string (UUID v4 of the target Lean problem)",
+  "strategies": "string[] (e.g. ['aesop', 'omega', 'induction'])",
+  "max_depth": "integer (limiting search tree size)"
+}</pre>
+            </div>
+            <div class="console-section">
+              <h4 class="console-heading">Sample Agent Invocation (ZMod 2 Parity)</h4>
+              <pre class="console-code highlight-json" id="mcp-tool-example">{
+  "caller": "Gemini 3.5 Flash",
+  "mcp_call": "proofsearch/empirical_search",
+  "arguments": {
+    "problem_id": "64ea8680-26c9-4544-acb3-eaf565df0e2e",
+    "strategies": ["by_cases", "simp_all"]
+  },
+  "response": {
+    "status": "kernel_verified",
+    "attempts": 1,
+    "proof": "intro x y t s hx hy hxy\\ndsimp\\nhave hz : x + y \\u2260 0 := by ...\\nby_cases h0 : s = t <;> simp_all"
+  }
+}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cycle Double Cover Theorem Explainer -->
+  <section class="cdc-section" id="cdc-theorem">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">The Cycle Double Cover Theorem</h2>
+        <p class="section-subtitle">Understanding the structure of the proof, its reductions, and why the vertex-ring expansion is key.</p>
+      </div>
+
+      <div class="cdc-layout">
+        <!-- Interactive SVG Diagram -->
+        <div class="cdc-visual-card glass">
+          <div class="visual-header">
+            <h3 class="visual-title">The Petersen Graph (Classic 2-Edge-Connected Graph)</h3>
+            <p class="visual-desc">Click/Hover the circuits to see how a Cycle Double Cover covers each edge exactly twice.</p>
+          </div>
+          <div class="visual-body">
+            <!-- Petersen Graph SVG with overlay cycles -->
+            <svg id="petersen-svg" viewBox="-120 -120 240 240" class="graph-svg">
+              <defs>
+                <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <circle cx="0" cy="0" r="100" fill="url(#glow)"/>
+              
+              <!-- Edges (Outer Pentagon) -->
+              <line x1="0" y1="-80" x2="76" y2="-25" class="graph-edge" data-edge="o1"/>
+              <line x1="76" y1="-25" x2="47" y2="65" class="graph-edge" data-edge="o2"/>
+              <line x1="47" y1="65" x2="-47" y2="65" class="graph-edge" data-edge="o3"/>
+              <line x1="-47" y1="65" x2="-76" y2="-25" class="graph-edge" data-edge="o4"/>
+              <line x1="-76" y1="-25" x2="0" y2="-80" class="graph-edge" data-edge="o5"/>
+
+              <!-- Edges (Inner Star) -->
+              <line x1="0" y1="-35" x2="21" y2="28" class="graph-edge" data-edge="i1"/>
+              <line x1="21" y1="28" x2="-33" y2="-11" class="graph-edge" data-edge="i2"/>
+              <line x1="-33" y1="-11" x2="33" y2="-11" class="graph-edge" data-edge="i3"/>
+              <line x1="33" y1="-11" x2="-21" y2="28" class="graph-edge" data-edge="i4"/>
+              <line x1="-21" y1="28" x2="0" y2="-35" class="graph-edge" data-edge="i5"/>
+
+              <!-- Edges (Spokes connecting outer to inner) -->
+              <line x1="0" y1="-80" x2="0" y2="-35" class="graph-edge" data-edge="s1"/>
+              <line x1="76" y1="-25" x2="33" y2="-11" class="graph-edge" data-edge="s2"/>
+              <line x1="47" y1="65" x2="21" y2="28" class="graph-edge" data-edge="s3"/>
+              <line x1="-47" y1="65" x2="-21" y2="28" class="graph-edge" data-edge="s4"/>
+              <line x1="-76" y1="-25" x2="-33" y2="-11" class="graph-edge" data-edge="s5"/>
+
+              <!-- Nodes (Outer Pentagon) -->
+              <circle cx="0" cy="-80" r="6" class="graph-node" id="n1"/>
+              <circle cx="76" cy="-25" r="6" class="graph-node" id="n2"/>
+              <circle cx="47" cy="65" r="6" class="graph-node" id="n3"/>
+              <circle cx="-47" cy="65" r="6" class="graph-node" id="n4"/>
+              <circle cx="-76" cy="-25" r="6" class="graph-node" id="n5"/>
+
+              <!-- Nodes (Inner Star) -->
+              <circle cx="0" cy="-35" r="6" class="graph-node" id="n6"/>
+              <circle cx="33" cy="-11" r="6" class="graph-node" id="n7"/>
+              <circle cx="21" cy="28" r="6" class="graph-node" id="n8"/>
+              <circle cx="-21" cy="28" r="6" class="graph-node" id="n9"/>
+              <circle cx="-33" cy="-11" r="6" class="graph-node" id="n10"/>
+            </svg>
+            <div class="cycles-legend">
+              <span class="cycle-legend-pill c1" data-cycle="1">Circuit A (Outer)</span>
+              <span class="cycle-legend-pill c2" data-cycle="2">Circuit B (Inner Star)</span>
+              <span class="cycle-legend-pill c3" data-cycle="3">Circuit C (Spoke Ring 1)</span>
+              <span class="cycle-legend-pill c4" data-cycle="4">Circuit D (Spoke Ring 2)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reduction Walkthrough -->
+        <div class="cdc-reduction-info glass">
+          <h3 class="subsection-title">The Proof Reduction Pipeline</h3>
+          <div class="timeline-steps">
+            <div class="timeline-step">
+              <div class="step-badge">1</div>
+              <div class="step-content">
+                <h4 class="step-title">General Graph to Cubic Expansion</h4>
+                <p class="step-text">
+                  Any loopless bridgeless multigraph can be expanded into a 3-regular (cubic) graph by expanding each vertex of degree d > 3 into a ring of d vertices connected by rings of helper edges, preserving bridgelessness.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-badge">2</div>
+              <div class="step-content">
+                <h4 class="step-title">Jaeger-Kilpatrick 8-Flow Theorem</h4>
+                <p class="step-text">
+                  We show that every finite bridgeless multigraph has a nowhere-zero F₂³-flow (an 8-flow). The proof inducts on the size of the vertex set, reducing 2-cuts by edge contraction.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-badge">3</div>
+              <div class="step-content">
+                <h4 class="step-title">Tree Packing & Nash-Williams</h4>
+                <p class="step-text">
+                  We pack three disjoint spanning-connected trees in the doubled graph. The core of this step is proving Diestel's exchange lemma, which replaces Kaiser's partition sequences in our formalization.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="step-badge">4</div>
+              <div class="step-content">
+                <h4 class="step-title">Flow Projection & List Assembly</h4>
+                <p class="step-text">
+                  An 8-flow gives three even edge covers whose symmetric difference properties cover each edge exactly twice. Finally, these even edge sets are decomposed into minimal cycles, constructing the Cycle Double Cover list.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step Ledger Section -->
+  <section class="ledger-section" id="ledger">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">The Verified Step Ledger</h2>
+        <p class="section-subtitle">Browse all 39 kernel-verified steps of the Track 2 re-derivation. Search by name, mirror, or UUID and click to inspect the Lean source code.</p>
+      </div>
+
+      <!-- Controls -->
+      <div class="ledger-controls glass">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="search-input" placeholder="Search steps, problem IDs, mirrors, or keywords...">
+        </div>
+        <div class="filter-wrapper">
+          <select id="category-filter">
+            <option value="all">All Proof Chapters</option>
+            <option value="cubic">Lemma 2.1 & 2.2 (Cubic Core)</option>
+            <option value="flow">Jaeger-Kilpatrick (Global 8-Flow)</option>
+            <option value="packing">Nash-Williams (Tree Packing)</option>
+            <option value="reductions">Reductions & Contractions</option>
+            <option value="capstone">Capstone Assembly</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Ledger Desktop Grid / Mobile Cards -->
+      <div class="ledger-container">
+        <div class="table-responsive">
+          <table class="ledger-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">#</th>
+                <th>Step / Theorem Name</th>
+                <th>Mirror in cdc-lean</th>
+                <th>Problem UUID</th>
+                <th style="width: 160px;">Status</th>
+              </tr>
+            </thead>
+            <tbody id="ledger-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detail / Code Modal -->
+  <div class="modal-backdrop" id="code-modal">
+    <div class="modal-card glass">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <span class="modal-step-num" id="modal-step-number">Step 01</span>
+          <h3 class="modal-title" id="modal-step-title">Local pair parity</h3>
+        </div>
+        <button class="btn-close-modal" id="btn-close-modal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Mirror in CDC-Lean:</span>
+            <code class="meta-value" id="modal-mirror">local_pair_parity</code>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Problem ID:</span>
+            <code class="meta-value copyable" id="modal-problem-id">64ea8680-26c9-4544-acb3-eaf565df0e2e</code>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Episode ID:</span>
+            <code class="meta-value copyable" id="modal-episode-id">90be1f6b-3408-4362-9711-17380cd615fb</code>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Outcome:</span>
+            <span class="status-badge-verified" id="modal-outcome">kernel_verified</span>
+          </div>
+        </div>
+        
+        <div class="code-viewer-container">
+          <div class="code-viewer-header">
+            <span class="code-filename" id="modal-filename">01-local-pair-parity.lean</span>
+            <button class="btn-copy-code" id="btn-copy-code">Copy Proof</button>
+          </div>
+          <pre class="code-pre"><code class="code-block" id="modal-code">-- Lean code here</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agent Reasoning Loop Walkthrough Section -->
+  <section class="reasoning-section" id="reasoning">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Anatomy of an Autonomous Verification</h2>
+        <p class="section-subtitle">Deep dive into Step 07: Cubic Labeling. A case study on how the AI agent navigated compilation failures, classical instances, and decEq issues to succeed.</p>
+      </div>
+
+      <div class="reasoning-layout">
+        <!-- Interactive Step Selector -->
+        <div class="attempts-timeline">
+          <div class="attempt-node active" data-attempt="1">
+            <div class="attempt-indicator">1</div>
+            <div class="attempt-meta">
+              <span class="attempt-title">Attempt 1: Wall Limit</span>
+              <span class="attempt-status err">Timeout (60s)</span>
+            </div>
+          </div>
+          <div class="attempt-node" data-attempt="2">
+            <div class="attempt-indicator">2</div>
+            <div class="attempt-meta">
+              <span class="attempt-title">Attempt 2: Decidable synthesis</span>
+              <span class="attempt-status err">Typecheck Error</span>
+            </div>
+          </div>
+          <div class="attempt-node" data-attempt="3">
+            <div class="attempt-indicator">3</div>
+            <div class="attempt-meta">
+              <span class="attempt-title">Attempt 3: Classical interference</span>
+              <span class="attempt-status err">Environment Poison</span>
+            </div>
+          </div>
+          <div class="attempt-node" data-attempt="4">
+            <div class="attempt-indicator">4</div>
+            <div class="attempt-meta">
+              <span class="attempt-title">Attempt 4: decEq synthesis</span>
+              <span class="attempt-status err">Tactic Failure</span>
+            </div>
+          </div>
+          <div class="attempt-node" data-attempt="5">
+            <div class="attempt-indicator">5</div>
+            <div class="attempt-meta">
+              <span class="attempt-title">Attempt 5: Budget Isolation</span>
+              <span class="attempt-status ok">Kernel Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attempt details console -->
+        <div class="attempt-details glass">
+          <div class="console-header">
+            <div class="console-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <span class="console-title" id="attempt-console-title">Attempt 1: Monologue & Action Log</span>
+          </div>
+          <div class="attempt-body">
+            <div class="log-row">
+              <span class="log-tag tag-observe">OBSERVE</span>
+              <div class="log-content">
+                <span class="log-timestamp">17:12:04</span>
+                <p id="attempt-observe">The agent starts verification of problem 78778b1d-1889-477e-a4ad-66eb22059045. The theorem requires cubic labeling (composed of Lemmas 2.1 and 2.2).</p>
+              </div>
+            </div>
+            <div class="log-row">
+              <span class="log-tag tag-orient">ORIENT</span>
+              <div class="log-content">
+                <span class="log-timestamp">17:12:15</span>
+                <p id="attempt-orient">The proof involves solving a system of linear equations in F₂³. Directly checking all 64 options using `decide` inside the main body might trigger high computation depth in Lean's evaluator.</p>
+              </div>
+            </div>
+            <div class="log-row">
+              <span class="log-tag tag-decide">DECIDE</span>
+              <div class="log-content">
+                <span class="log-timestamp">17:12:20</span>
+                <p id="attempt-decide">Propose a unified theorem enclosing both ZMod 2 mapping and coordinate rearrangments. Run `episode_step` with the complete proof candidate.</p>
+              </div>
+            </div>
+            <div class="log-row">
+              <span class="log-tag tag-act">ACT</span>
+              <div class="log-content">
+                <span class="log-timestamp">17:12:22</span>
+                <p id="attempt-act">Submitted code to Lean compiler. Result: `Compilation timed out (wall cap 60 seconds exceeded)`. Lean spent too much time trying to decide ZMod equations inline without helper lemma isolation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p>&copy; 2026 OpenAI Proof Formalization Project. Powered by Antigravity AI.</p>
+        <p class="footer-subtext">Independent validation tracked across Mnehmos' distributed agent environment.</p>
+      </div>
+      <div class="footer-right">
+        <a href="#overview">Back to Top</a>
+        <a href="#mcp-showcase">MCP Docs</a>
+        <a href="#ledger">Lean Code</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="stepsData.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
