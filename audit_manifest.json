@@ -1,0 +1,655 @@
+{
+  "manifest_version": "1.0.0",
+  "audit_date": "2026-07-11",
+  "commit_sha": "11b3e24d075a88543de278a7ec6691d37c1f7a5f",
+  "environment_repository": "https://github.com/Mnehmos/llm-driven-proof-search",
+  "website_repository": "https://github.com/Mnehmos/openai-proof-formalization.website",
+  "toolchain": "Lean 4.31.0, Mathlib v4.31.0",
+  "operators": {
+    "audit_operator": "Claude 3.5 Sonnet / Antigravity AI",
+    "proof_search_environment": "Antigravity AI (embodied cognitive workspace agent)",
+    "underlying_models": [
+      "Gemini 1.5 Pro",
+      "GPT-4o"
+    ]
+  },
+  "general_reduction_flow_conditional": "steps 14 -> 13 -> 15 (with 08 discharged) -> 12 -> 11 (with 09)",
+  "axiom_hygiene": {
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "step_02_native_decide": {
+      "status": "native_decide used",
+      "is_load_bearing": false,
+      "capstone_dependency_chain": "does not depend on Step 02"
+    }
+  },
+  "steps": [
+    {
+      "step_number": 1,
+      "title": "Local pair parity (eqs. 2\u20133)",
+      "mirror_declaration": "local_pair_parity",
+      "problem_version_id": "64ea8680-26c9-4544-acb3-eaf565df0e2e",
+      "episode_id": "90be1f6b-3408-4362-9711-17380cd615fb",
+      "outcome": "kernel_verified (2026-07-11)",
+      "source_file": {
+        "name": "01-local-pair-parity.lean",
+        "sha256": "5f5bad6b63fe5decc97e98ca966151a46932b10a5a16d64fc38abc4942fd38a5"
+      },
+      "verification_dossier": {
+        "name": "step-01-dossier.md",
+        "sha256": "b42f9944a2d2ef39370ab5ca7d16371778ead8971283ac610255f3fcc24ae1bf"
+      }
+    },
+    {
+      "step_number": 2,
+      "title": "Local dual identity, dot-product form",
+      "mirror_declaration": "local_dual_identity",
+      "problem_version_id": "3d5b9cb6-b3a3-4358-95aa-b2e52bb2032b",
+      "episode_id": "23b209f0-a31f-40be-8ec4-429ebbfa56d9",
+      "outcome": "kernel_verified (2026-07-11) \u26a0 uses `native_decide`",
+      "source_file": {
+        "name": "02-local-dual-identity-dotproduct.lean",
+        "sha256": "dfd65fc83b26e4a659c5c70d69b8fb032d37e651b0cc36c73583eee748b3cf7b"
+      },
+      "verification_dossier": {
+        "name": "step-02-dossier.md",
+        "sha256": "7a67221380bbf0d43df2bfedfbd0a2d584273c43b93a3742fe45acc8bdb65389"
+      }
+    },
+    {
+      "step_number": 3,
+      "title": "Abstract vertex identity (eqs. 7\u20139)",
+      "mirror_declaration": "local_dual_identity (abstract \u03c7)",
+      "problem_version_id": "566d2bfc-fbc9-4d9f-a0e6-274ef69cb428",
+      "episode_id": "b64f8ba3-3ba8-46e5-8487-2dff301ee410",
+      "outcome": "kernel_verified (2026-07-11)",
+      "source_file": {
+        "name": "03-abstract-vertex-identity.lean",
+        "sha256": "9692ffee1bcf5f8f4322a5e20601e471e6c0bbf5f0bb377232564e398af8d0f1"
+      },
+      "verification_dossier": {
+        "name": "step-03-dossier.md",
+        "sha256": "d3d48d8e4e54e8b6e2ef615c7db184bc32828916530218d2ee834e7c119aa589"
+      }
+    },
+    {
+      "step_number": 4,
+      "title": "Global dual-obstruction assembly (system 4)",
+      "mirror_declaration": "compatibility_solvable (certificate form)",
+      "problem_version_id": "9eafd294-d3b7-4f2f-8704-6e530e0d227e",
+      "episode_id": "4eeb87f5-2ee8-48f1-a414-0b1e4c942ee6",
+      "outcome": "kernel_verified (2026-07-11)",
+      "source_file": {
+        "name": "04-global-dual-assembly.lean",
+        "sha256": "a3da551a83956b2db3f2f1cd7b7d17fc00bcdb90c26bead8a65331a8b0b8f1c9"
+      },
+      "verification_dossier": {
+        "name": "step-04-dossier.md",
+        "sha256": "51a636a9abe184de174c990cf5ab8a57b51faed5cb14887411b9c171219b12e5"
+      }
+    },
+    {
+      "step_number": 5,
+      "title": "Annihilator uniqueness in dim 3",
+      "mirror_declaration": "(implicit in their decide)",
+      "problem_version_id": "cf9ca3b0-d4a9-4406-bf34-c406515efd6f",
+      "episode_id": "9763965c-5107-45db-bc6e-f5b2e391b250",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt)",
+      "source_file": {
+        "name": "05-annihilator-uniqueness-3d.lean",
+        "sha256": "6613ed63f980d50367f230482fc71eccda6690192a203337ddfb32ee1b3fd3b4"
+      },
+      "verification_dossier": {
+        "name": "step-05-dossier.md",
+        "sha256": "4e591eda827d8e6c3d9463d63de7dacaedcd1de60234e41b5ccdad4f7ee93678"
+      }
+    },
+    {
+      "step_number": 6,
+      "title": "Lemma 2.2 complete \u2014 compatibility system solvable",
+      "mirror_declaration": "compatibility_solvable",
+      "problem_version_id": "4c4eb078-b6b6-4823-aa72-6d120035f823",
+      "episode_id": "0c06c7cd-de31-45f2-9fde-03a3690c6e81",
+      "outcome": "kernel_verified (2026-07-11, 2 attempts)",
+      "source_file": {
+        "name": "06-lemma-2-2-compatibility-solvable.lean",
+        "sha256": "f87b7e48f90d8bd2e510c60ee25f922924b77d2e580bdf9c9c1138f28c9e6af3"
+      },
+      "verification_dossier": {
+        "name": "step-06-dossier.md",
+        "sha256": "ef7567190560b880f20663f0c2f11815165a5b98fbd8af8137926a9ed0f8150f"
+      }
+    },
+    {
+      "step_number": 7,
+      "title": "Cubic labeling (Lemma 2.1\u22182.2)",
+      "mirror_declaration": "cubic_labeling",
+      "problem_version_id": "78778b1d-1889-477e-a4ad-66eb22059045",
+      "episode_id": "e0395b03-697b-420b-a75e-39ef1e388882",
+      "outcome": "kernel_verified (2026-07-11, 5 attempts \u2014 see note)",
+      "source_file": {
+        "name": "07-cubic-labeling.lean",
+        "sha256": "65d1a358d303c8deba9636a9b1170eef832570f12d7c28041161ad6e18ddd9f8"
+      },
+      "verification_dossier": {
+        "name": "step-07-dossier.md",
+        "sha256": "86e05cbd2305d993c8f98117e638aeada061ffc4873b7c3be9a8469eecfa6403"
+      }
+    },
+    {
+      "step_number": 8,
+      "title": "Indexed even double cover (cubic-case core)",
+      "mirror_declaration": "cubic_even_double_cover",
+      "problem_version_id": "3917309c-9df8-4f9b-a154-bb937a45cd05",
+      "episode_id": "15c3c5d2-7512-4545-a7da-cd3acfcf10fa",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt)",
+      "source_file": {
+        "name": "08-multigraph-cdc.lean",
+        "sha256": "195ae28dc86a810669c321b0ec947ccb6cefbcd3418cc18c1f2091cbb0a1e873"
+      },
+      "verification_dossier": {
+        "name": "step-08-dossier.md",
+        "sha256": "c273b19f5b75a0f3b49b760a9b948662e0c43d4869470d5b4cca208f917f7d67"
+      }
+    },
+    {
+      "step_number": 9,
+      "title": "Cycle decomposition of even edge sets",
+      "mirror_declaration": "decompose_even_edge_set",
+      "problem_version_id": "d269b928-fb3b-4ba5-b376-956bb15565d4",
+      "episode_id": "82fc190d-0f34-48bf-b4f3-f65641ebc129",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt)",
+      "source_file": {
+        "name": "09-cycle-decomposition.lean",
+        "sha256": "3a7b6c052f7d37bf250565e8b8a5f35ccd9b024feea241c2375576d1b01ce23f"
+      },
+      "verification_dossier": {
+        "name": "step-09-dossier.md",
+        "sha256": "0fd5174c2b429527164986729d608b6d19fdd06a6174b7a57b4f54015072624f"
+      }
+    },
+    {
+      "step_number": 10,
+      "title": "Ends-form even double cover",
+      "mirror_declaration": "cubic_even_double_cover + support_even",
+      "problem_version_id": "2667a666-0b2f-4786-b9d0-d5f874bc4883",
+      "episode_id": "e36261d0-3efc-448a-9cd9-4a78671ac349",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "10-ends-even-double-cover.lean",
+        "sha256": "d7c9d5c40f8801de23f369ffc8f6eee7cf3afe25053f701b73c15eaf133b7609"
+      },
+      "verification_dossier": {
+        "name": "step-10-dossier.md",
+        "sha256": "ebe8fd42e13bd1794bb1864bb573fc02c503788b06507f0feb601767b81f698f"
+      }
+    },
+    {
+      "step_number": 11,
+      "title": "Cover \u21d2 cycle double cover (assembly; hypotheses = concl. of 09 + 10)",
+      "mirror_declaration": "IndexedEvenDoubleCover.toCycleDoubleCover",
+      "problem_version_id": "4adc1d0b-1d85-4d3d-879d-0ec080d5f28a",
+      "episode_id": "c28d8df1-780e-4bd9-8018-34d4952c0f9d",
+      "outcome": "kernel_verified (2026-07-11, attempt 3)",
+      "source_file": {
+        "name": "11-cover-to-cycle-double-cover.lean",
+        "sha256": "8267222f0610919138711874b1254519f27a8d0a67dcc06485ecd0044272d984"
+      },
+      "verification_dossier": {
+        "name": "step-11-dossier.md",
+        "sha256": "a914b2b9109237d27b08aac94dae88da7704e7a5e1c49a8fcccea60d3c8190b2"
+      }
+    },
+    {
+      "step_number": 12,
+      "title": "Expansion cover projection (rings cancel; concl. = cover hyp. of 11)",
+      "mirror_declaration": "projected_vertex_even / projectEvenDoubleCover",
+      "problem_version_id": "b202d6d2-6d22-432b-a74d-ef472621567b",
+      "episode_id": "99c5106b-1669-4318-ac4b-146bbe1ed5e0",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "12-expansion-cover-projection.lean",
+        "sha256": "0a36da0cfb0f9dc3d2b520285b998d683353344bd2a780429c5bba71d5f16eaa"
+      },
+      "verification_dossier": {
+        "name": "step-12-dossier.md",
+        "sha256": "b680379dca1e909d07a96f87df4a14f6a475cd58f479ab8f980c6a477d39a593"
+      }
+    },
+    {
+      "step_number": 13,
+      "title": "Rotation-system existence (degree \u2260 1 \u21d2 vertex-preserving fixed-point-free fiber-transitive perm)",
+      "mirror_declaration": "rotationSystemOfDegreeNeOne",
+      "problem_version_id": "abd3fd7f-4d0d-4042-98cc-14e68449e9db",
+      "episode_id": "04744cf3-b179-45d4-b0cb-f4a15896ba29",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted \u00d74)",
+      "source_file": {
+        "name": "13-rotation-system-existence.lean",
+        "sha256": "69e6d832d36f3714be0f5ca3610e121f04486da8724eedf791c555b1a929bc84"
+      },
+      "verification_dossier": {
+        "name": "step-13-dossier.md",
+        "sha256": "09dd7e3a31bdeae6dbd9a2060b5acbeb1324944ce9947ae2685bedab2add9df9"
+      }
+    },
+    {
+      "step_number": 14,
+      "title": "Bridgeless \u21d2 degree \u2260 1 (concl. = hyp. of 13)",
+      "mirror_declaration": "degree_ne_one_of_bridgeless",
+      "problem_version_id": "7aa583df-c304-4f9f-9396-720964cebc4b",
+      "episode_id": "fb3502ad-11b3-4848-8c5a-630f6bb5d0c0",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "14-bridgeless-degree-ne-one.lean",
+        "sha256": "382f5e16948f5269c352d700cf1779729270167fdc78f7575ffff27510c61b49"
+      },
+      "verification_dossier": {
+        "name": "step-14-dossier.md",
+        "sha256": "d313a36c30ef2b57bb9fd7bd51d1e4d112fca51cb32b5c0c83e136b09fde25f5"
+      }
+    },
+    {
+      "step_number": 15,
+      "title": "Flow \u21d2 localized expansion cover (step 08's statement as hypothesis, instantiated at the expansion incidence)",
+      "mirror_declaration": "cubicExpansion + expansionIncidence + apply",
+      "problem_version_id": "e46a54f1-e42c-4852-94a2-a7004c6f9e3e",
+      "episode_id": "dcc3a393-8dcd-4673-9757-4e4b91e7365d",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "15-flow-to-expansion-cover.lean",
+        "sha256": "8123090456fb9754915431d94992634726bf4dd766d9cc5ce53598268220d999"
+      },
+      "verification_dossier": {
+        "name": "step-15-dossier.md",
+        "sha256": "f049886afe1de176d7a29bafbe51d3cb260d9d452fd8ed5d6cb725d89215ae6d"
+      }
+    },
+    {
+      "step_number": 16,
+      "title": "Expansion is bridgeless (ring cuts impossible in char 2; spoke cuts descend to G)",
+      "mirror_declaration": "expansionGraph_bridgeless",
+      "problem_version_id": "f6d3b3d0-6a74-45dd-8fc3-17214fdec90f",
+      "episode_id": "b05d039a-3fa5-413b-94c9-b8c226cc46ee",
+      "outcome": "kernel_verified (2026-07-11, attempt 2)",
+      "source_file": {
+        "name": "16-expansion-bridgeless.lean",
+        "sha256": "52c83abc86a9b3436a423c8623750bb5b6b7e8471f33e88b505d57bda49925be"
+      },
+      "verification_dossier": {
+        "name": "step-16-dossier.md",
+        "sha256": "ec023438511202d56187ba1581c96531d98aad38f84f3366f8625171eeba63d9"
+      }
+    },
+    {
+      "step_number": 17,
+      "title": "Flow from three even covers (8-flow campaign JK-A)",
+      "mirror_declaration": "nowhereZeroGammaFlow_of_evenCover",
+      "problem_version_id": "993b9826-f68c-4534-8517-877d118adf7b",
+      "episode_id": "045a2345-7bc2-4469-8784-179d6870e554",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "17-flow-from-three-even-covers.lean",
+        "sha256": "1cc7565e34df8f9fca127f39ba91026b12b1d00064fbfd7772e22a3a7da93554"
+      },
+      "verification_dossier": {
+        "name": "step-17-dossier.md",
+        "sha256": "b728280bce9b9583f5f2320f7b238296a0e9a5ffd17f2ba2561890c8caf99d33"
+      }
+    },
+    {
+      "step_number": 18,
+      "title": "Even superset from fundamental cycles (JK-B1; char-2 shortcut past the \u2124-circulation machinery)",
+      "mirror_declaration": "exists_even_superset_compl_of_spanningTree (core)",
+      "problem_version_id": "68e5b80e-c41c-45b7-b2c3-ace4d05ebcb6",
+      "episode_id": "35479379-9829-498c-af26-ab45e65fe4d4",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "18-even-superset-from-fundamental-cycles.lean",
+        "sha256": "1e401c34fca149a527a99560eccd9d87dc6fd22a52ccfa4916a18561e782ca03"
+      },
+      "verification_dossier": {
+        "name": "step-18-dossier.md",
+        "sha256": "76238340f93b63c0e1c26d6aa303f4556b5d795ed83ecd17ced00d49f5da9c00"
+      }
+    },
+    {
+      "step_number": 19,
+      "title": "Fundamental cycles from connectivity (JK-B2; F\u2082 path-parity certificates by ReflTransGen induction; concl. = hyp. of 18)",
+      "mirror_declaration": "hasIntegerPath_* / fundamental cycles",
+      "problem_version_id": "c09edee4-ede6-4204-a1ba-305f42c9f080",
+      "episode_id": "0a521779-1dd0-4454-b62f-1a9978576729",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "19-fundamental-cycles-from-connectivity.lean",
+        "sha256": "ee8bdd826d9924628372643b56d6b5b908e122f278bef93c5be9fa9c0817aa0d"
+      },
+      "verification_dossier": {
+        "name": "step-19-dossier.md",
+        "sha256": "1a7aea3da857a564c11b6231572cc26f8b311b8a420324ab7181ab824c9e9d5a"
+      }
+    },
+    {
+      "step_number": 20,
+      "title": "Tree packing \u21d2 nowhere-zero flow (JK-D-lite; statements of 17+18+19 as hypotheses; disjointness gives edge coverage)",
+      "mirror_declaration": "nowhereZeroGammaFlow_of_threeEdgeConnected glue (JK 334\u2013399, modulo tree-packing input)",
+      "problem_version_id": "43da22a1-fd7e-4f76-9f52-084b2f1a6e9f",
+      "episode_id": "c4caad40-c393-4c67-aac4-d4d51aed3f3f",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "20-tree-packing-implies-flow.lean",
+        "sha256": "2347c194d978e70859a7c81744453fc2e4bc8378268c0288083edef0ff27ad51"
+      },
+      "verification_dossier": {
+        "name": "step-20-dossier.md",
+        "sha256": "07310255efa3e7c769c81266aa4f073d7d02514d41eecb35eaa7340f2e1f0938"
+      }
+    },
+    {
+      "step_number": 21,
+      "title": "3-edge-connected \u21d2 doubled packing condition (JK-C; partitions as classifiers c : V \u2192 V, classes = fibers over image c)",
+      "mirror_declaration": "doubleGraph_satisfiesTreePackingCondition_of_threeEdgeConnected",
+      "problem_version_id": "cd0a7b4a-c670-4f6c-8b6d-3bbee2afc41f",
+      "episode_id": "472fc585-97d4-4e96-a00f-df338308555c",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "21-double-graph-packing-condition.lean",
+        "sha256": "5e4b57af82873116d5c60d5915121c314e672c708286cf57ba7a0ed12456b17b"
+      },
+      "verification_dossier": {
+        "name": "step-21-dossier.md",
+        "sha256": "131178211f81775d539353df7f0e2702f54b36114123e68cf713f15f0f122a89"
+      }
+    },
+    {
+      "step_number": 22,
+      "title": "Omission glue (JK-D main-chain form: connected T i + every edge omitted by one \u21d2 flow; 17/18/19 as hypotheses)",
+      "mirror_declaration": "nowhereZeroGammaFlow_of_threeEdgeConnected glue (JK 388\u2013399)",
+      "problem_version_id": "1cd81f06-9a66-40ee-a070-11724bbd8d7d",
+      "episode_id": "40271639-6dcd-4ffd-93a0-b87dfc3d7e75",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "22-omission-glue-flow.lean",
+        "sha256": "b532d9d9b626193e9ea605b2ee80af36d9ae470fe77c343c0ab36256a3bb01cf"
+      },
+      "verification_dossier": {
+        "name": "step-22-dossier.md",
+        "sha256": "8b7e70a641b9b9ddab4a4d4053782f7abf7d32be9c88bddd454ca583725aa6c7"
+      }
+    },
+    {
+      "step_number": 23,
+      "title": "Doubled-packing projection (disjoint connected sets in E \u00d7 Fin 2 \u21d2 connected + omission in E; pigeonhole on copies; concl. = T-hyps. of 22)",
+      "mirror_declaration": "packing half of exists_three_spanningTrees_omitting_each_edge (JK 334\u2013386)",
+      "problem_version_id": "18818939-1981-47c2-be2d-db85b813ba9b",
+      "episode_id": "10f70a28-eb75-45e4-bee8-5b8379977a96",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "23-doubled-packing-projection.lean",
+        "sha256": "7d166986d1bf68d68162ca3d02392baee491e19a7e539ea3050b57f3d4c18178"
+      },
+      "verification_dossier": {
+        "name": "step-23-dossier.md",
+        "sha256": "00f95ab6c33011440d02eaafd2c59af8a6965eded33d0bd68bdaf451ab6dd143"
+      }
+    },
+    {
+      "step_number": 24,
+      "title": "Internal + quotient \u21d2 connected (NW-2; classifier fibers internally connected + class-closed quotient walks \u21d2 full connectivity)",
+      "mirror_declaration": "connects_of_internal_of_quotient_connects (NW 884\u2013958)",
+      "problem_version_id": "39c57ce0-76c9-4f85-b4f1-e3495e5ecaf2",
+      "episode_id": "5272c958-f18d-412b-84a2-86150c9ee396",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "24-internal-quotient-connectivity-glue.lean",
+        "sha256": "75ac1ea3b4ad6b733104b8ad308dd5ae1dc0ce8a3bbae7e1fea5bd6d05bb81f7"
+      },
+      "verification_dossier": {
+        "name": "step-24-dossier.md",
+        "sha256": "86e515f68ced0977216b39ea41a939bae3f13fa3265514e841da3084d5d1dabc"
+      }
+    },
+    {
+      "step_number": 25,
+      "title": "Forest crossing count (NW-1; forest + internal fibers \u21d2 crossings \u2264 classes\u22121, equality \u21d2 quotient connected; merge induction on the crossing set)",
+      "mirror_declaration": "counting layer, NW 2573\u20132691 (forests, classifier form)",
+      "problem_version_id": "5341018f-9caf-456c-a188-8875d3a5c5da",
+      "episode_id": "ad2124ce-817b-42fe-bf43-b99920fad585",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted \u00d73)",
+      "source_file": {
+        "name": "25-forest-crossing-count.lean",
+        "sha256": "a46a1ab3cdea07d491395122d9d231b4e08d8f801d571a95cbbd886dda79be64"
+      },
+      "verification_dossier": {
+        "name": "step-25-dossier.md",
+        "sha256": "10315c89f26bfa93e6272f25dac646e535cc1a863d7daffe4267083d269dfeaf"
+      }
+    },
+    {
+      "step_number": 26,
+      "title": "The exchange lemma (NW-3 = Diestel 2.4.3, the heart of tree packing: maximum disjoint-forest tuple + fully-free edge \u21d2 a predicate containing its ends, internally connected in every forest; exchange closure over tuples, free-edge adjacency component, 490-line single declaration)",
+      "mirror_declaration": "replaces Kaiser machinery, NW 337\u20133459",
+      "problem_version_id": "3632c255-b78e-4128-9a1e-9602c3946de4",
+      "episode_id": "9f74edd6-8a3e-44bb-a9d5-58be0b4cb486",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted \u00d710)",
+      "source_file": {
+        "name": "26-exchange-lemma.lean",
+        "sha256": "ddccce73404816b55dde755a30a7ab5a9544e8cd028539adfa53afbd720630b8"
+      },
+      "verification_dossier": {
+        "name": "step-26-dossier.md",
+        "sha256": "798020cc8a7f3cc340748a5dd5d515789ee69ba81dade19ec71755f0867391bd"
+      }
+    },
+    {
+      "step_number": 27,
+      "title": "Nash-Williams tree packing, k=3 (NW-TOP: packing condition \u21d2 three disjoint spanning-connected sets; 24+25+26 as hypotheses; max tuple + EqvGen classifier + counting)",
+      "mirror_declaration": "hasTreePacking_of_condition / nashWilliamsTutte (NW 3592\u20133653)",
+      "problem_version_id": "c5b86842-c29d-48fa-b477-a8a1b3466e3e",
+      "episode_id": "24730338-152b-4bf7-bc19-6d742e9d02c6",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted \u00d72)",
+      "source_file": {
+        "name": "27-nash-williams-tree-packing.lean",
+        "sha256": "5514b88e0ae1a21bfc9e07f4cfcf002b8c2f376b0129e488d26b0b8dbd57c42c"
+      },
+      "verification_dossier": {
+        "name": "step-27-dossier.md",
+        "sha256": "5a7cdf034f5d1fc493cfab42868945101a04b513fc14ed340118b6bc5eda2608"
+      }
+    },
+    {
+      "step_number": 28,
+      "title": "Conservation across a 2-cut (JK-E-1: \u03c6 conserving off the ends of e\u2081 + 2-cut {e\u2081,e\u2082} + equal cut values \u21d2 conserves everywhere; char-2 core of the contraction pullback)",
+      "mirror_declaration": "nowhereZeroGammaFlow_of_contractEdge_of_twoCut (JK 686\u2013793)",
+      "problem_version_id": "8dda72dc-ccfc-45b4-a4c3-9213abd10162",
+      "episode_id": "1e07b2b0-cb95-413d-9e8e-bba0921b5211",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted \u00d73)",
+      "source_file": {
+        "name": "28-conservation-across-two-cut.lean",
+        "sha256": "c6cfd39380fa2aa738d791452c3903162b91ab638e1abef82701194dd895572a"
+      },
+      "verification_dossier": {
+        "name": "step-28-dossier.md",
+        "sha256": "0355260e1d03e811bc6924cafc6f00caa5c1afa22efcfb5b11f846c0ae6278c8"
+      }
+    },
+    {
+      "step_number": 29,
+      "title": "3EC \u21d2 doubled tree packing (JK-E-2a: bundles 21+27, carrying 24/25/26; \u21d2 three disjoint spanning-connected sets in E \u00d7 Fin 2)",
+      "mirror_declaration": "21\u221827 composition",
+      "problem_version_id": "6edd347f-0058-4275-a8d7-67596c70f332",
+      "episode_id": "6bc3de88-43b8-4688-8ab4-d51377e6009b",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "29-double-graph-tree-packing-of-3ec.lean",
+        "sha256": "3210d93bac55438d9a863e3c2a46c0a486aa58609a7e9d8a57ff420857815798"
+      },
+      "verification_dossier": {
+        "name": "step-29-dossier.md",
+        "sha256": "d9c179d6f5a5c565dc2fc57a0469127242a8177821595aab3e7153f69f426d70"
+      }
+    },
+    {
+      "step_number": 30,
+      "title": "Doubled packing \u21d2 flow (JK-E-2b: bundles 23+22, carrying 17/18/19; doubled disjoint-connected tuple \u21d2 ends-form flow over E)",
+      "mirror_declaration": "23\u221822 composition",
+      "problem_version_id": "1a88148f-0169-4a60-b4e5-6365573274b8",
+      "episode_id": "d4cb12d9-65e5-49cc-8abf-af9d4ed7e632",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted)",
+      "source_file": {
+        "name": "30-doubled-packing-to-flow.lean",
+        "sha256": "bf5ca7f85fcf6d952d90fd8f684a4c7f202bca6304df9aa7d3ed67d88a09e8e9"
+      },
+      "verification_dossier": {
+        "name": "step-30-dossier.md",
+        "sha256": "ac54a01bd18fbd679f9af26fea22e7089b26292c2cd435b25e7dad8f1f4bed88"
+      }
+    },
+    {
+      "step_number": 31,
+      "title": "Two-cut contraction pullback (JK-E-2c: nowhere-zero flow on the edge-contracted graph (abstract merge-map q : V \u2192 W) \u21d2 nowhere-zero ends-form flow on the original; uses step 28)",
+      "mirror_declaration": "nowhereZeroGammaFlow_of_contractEdge_of_twoCut (JK 686\u2013793)",
+      "problem_version_id": "0cf0561e-7176-4071-a692-93971bf687b4",
+      "episode_id": "f85271cd-ae3d-4a78-9fef-ce643d32a2fc",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted \u00d73)",
+      "source_file": {
+        "name": "31-two-cut-contraction-pullback.lean",
+        "sha256": "9959ff014ef23da74816c714bf186780078f1758626eb0756ba2118493387b27"
+      },
+      "verification_dossier": {
+        "name": "step-31-dossier.md",
+        "sha256": "252da83d49461fee2db0670ff2a6dd8fe5fcfdb9ab685a5a94ffee9c084f01eb"
+      }
+    },
+    {
+      "step_number": 32,
+      "title": "2-cut existence (JK-E-3a: bridgeless + connected + \u00ac3EC \u21d2 a 2-edge cut)",
+      "mirror_declaration": "case split in jaegerKilpatrickEightFlow_connected (JK 905\u2013933)",
+      "problem_version_id": "e073d2c8-b40e-4ad7-8342-76957d951caf",
+      "episode_id": "67dd9620-f09d-4642-8552-4450f4afcf07",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted \u00d72)",
+      "source_file": {
+        "name": "32-two-cut-existence.lean",
+        "sha256": "8e2c5cbe7b5691b0cc209af76ba805ffe8f1a1fa813604bdc018a7e06f83035c"
+      },
+      "verification_dossier": {
+        "name": "step-32-dossier.md",
+        "sha256": "9e2c1d653a9d1f6f5255ac3bf37d350ba31601b861f85875ebfd2cf3481e54d7"
+      }
+    },
+    {
+      "step_number": 33,
+      "title": "Bridgeless-to-3EC contraction recursion (JK-E-3: THE main reduction \u2014 bridgeless + connected \u21d2 nowhere-zero ends-form flow, no 3EC assumption; concrete subtype contraction W := {v // v \u2260 mergedVertex}, strong induction on card V; carries hFlow3EC + steps 28/31/32)",
+      "mirror_declaration": "jaegerKilpatrickEightFlow_connected (JK 902\u2013933)",
+      "problem_version_id": "aae6e901-7438-4e49-be94-d3e75df152ec",
+      "episode_id": "820065fe-ea40-476b-a30a-ebc0b2d56a53",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, sorry-skeleton-first \u00d78)",
+      "source_file": {
+        "name": "33-bridgeless-to-3ec-recursion.lean",
+        "sha256": "538278f82dfbe00b6199687bcb05ea263bf5b45268416469c1b3ff252298595f"
+      },
+      "verification_dossier": {
+        "name": "step-33-dossier.md",
+        "sha256": "f61ab00014c31405ceb7b71e3d9bef5c08444a59e46c72d0ad51309086661033"
+      }
+    },
+    {
+      "step_number": 34,
+      "title": "Component decomposition (JK-E-4: connectedness drops \u2014 EVERY bridgeless multigraph has a nowhere-zero ends-form flow; per-component flows via a Quotient.out reachability classifier, glued by disjoint supports; hypothesis = step 33's conclusion verbatim)",
+      "mirror_declaration": "jaegerKilpatrickEightFlow_of_nonempty + components (JK 1110\u20131219)",
+      "problem_version_id": "5145a5c2-63e7-4c86-805e-cfae1e2577b1",
+      "episode_id": "82de0408-700c-4382-91f0-ec34ac2c4f1d",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt, pre-flighted \u00d74)",
+      "source_file": {
+        "name": "34-component-decomposition.lean",
+        "sha256": "8406eebd99894b13ba06e8f3158b28c7a6b5434b51c4e31100592338967941e0"
+      },
+      "verification_dossier": {
+        "name": "step-34-dossier.md",
+        "sha256": "089bacb15bb7a2014bedeebacdeb5c3ebad0e3c5afeabca3b6dd55a04d462d9e"
+      }
+    },
+    {
+      "step_number": 35,
+      "title": "Expansion conservation localization (ends-form conservation on the concrete spoke/ring expansion collapses to the three-term equation consumed by step 15)",
+      "mirror_declaration": "expansion incidence bookkeeping",
+      "problem_version_id": "ebdceefb-a181-4a85-89f6-7ba4a7ab337e",
+      "episode_id": "56f03854-caca-400f-b62a-2e386cfb7525",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt; locally pre-flighted)",
+      "source_file": {
+        "name": "35-expansion-conservation-localization.lean",
+        "sha256": "57016af19b25e9e4af6e90436bce63dad6791047f62f388b7637da3c4caec77e"
+      },
+      "verification_dossier": {
+        "name": "step-35-dossier.md",
+        "sha256": "0332dd2cc8f9144db728cb3d065f5822580dd79d008fefe6216493a0f936a351"
+      }
+    },
+    {
+      "step_number": 36,
+      "title": "Expansion bridgeless \u21d2 expansion flow (step 16 composed with the completed step-34 8-flow theorem)",
+      "mirror_declaration": "expansionGraph_bridgeless + Jaeger\u2013Kilpatrick flow",
+      "problem_version_id": "bb630198-62a9-4b2a-878f-02730b48a8e8",
+      "episode_id": "cbb5ffbb-e951-4ac5-b1b5-c62873d1a958",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt; locally pre-flighted)",
+      "source_file": {
+        "name": "36-expansion-bridgeless-to-flow.lean",
+        "sha256": "daec65644559fcdff9d50bcf0af4749b94d95b3ab5bf448ba2d5dd8845790958"
+      },
+      "verification_dossier": {
+        "name": "step-36-dossier.md",
+        "sha256": "f6ae55efaa1b9fcf71d441c1029c85e1873e7022e5caef24a794d4d9729fda11"
+      }
+    },
+    {
+      "step_number": 37,
+      "title": "Expansion flow \u21d2 original indexed even cover (35 \u2192 15+08 \u2192 12)",
+      "mirror_declaration": "expansion flow, cubic cover, projection",
+      "problem_version_id": "ea2b752c-c068-4470-a096-57ab8d5adb8a",
+      "episode_id": "50dad87f-d22e-4200-be67-8761c79d20cd",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt; locally pre-flighted)",
+      "source_file": {
+        "name": "37-expansion-flow-to-original-cover.lean",
+        "sha256": "5fff6030d4e91b80f20759192d877aa173bd2bf4d9fa2b317a583fe06ef11a42"
+      },
+      "verification_dossier": {
+        "name": "step-37-dossier.md",
+        "sha256": "a4f64c2eaa9e9efa650938284d982597bb75a285b716500c17e1824738f69a29"
+      }
+    },
+    {
+      "step_number": 38,
+      "title": "Bridgeless graph \u21d2 indexed even double cover (14\u219213 rotation, then 36\u219237)",
+      "mirror_declaration": "full reduction to the expansion",
+      "problem_version_id": "a590ad0c-5165-49f7-b098-7c46eca98d93",
+      "episode_id": "e078a0a6-3a45-404d-84f0-1fa7c9c92c60",
+      "outcome": "kernel_verified (2026-07-11, corrected statement, 1 proof attempt)",
+      "source_file": {
+        "name": "38-bridgeless-to-even-double-cover.lean",
+        "sha256": "d3d16a640207c36bd0d2e594cad351f2843ae1d1511c52eca4660b851448c538"
+      },
+      "verification_dossier": {
+        "name": "step-38-dossier.md",
+        "sha256": "7b5ed7ddf7ebf0b40b1a655a435adae4ec3ceaafeca05efdb1825f53be68e6cf"
+      }
+    },
+    {
+      "step_number": 39,
+      "title": "Final Cycle Double Cover capstone (step 38 + step 09; step-11 list assembly rederived inline)",
+      "mirror_declaration": "cycleDoubleCover_of_bridgeless theorem shape",
+      "problem_version_id": "7211fcc8-d1d9-422c-aab3-14db222a98b3",
+      "episode_id": "06c72fd1-9e61-44f0-8ec5-93995d204eed",
+      "outcome": "kernel_verified (2026-07-11, 1 attempt)",
+      "source_file": {
+        "name": "39-cycle-double-cover-capstone.lean",
+        "sha256": "03f3ea849853ab964d8a86009b3f6be84ef769938438ab106b1c11aa4d8e69ba"
+      },
+      "verification_dossier": {
+        "name": "step-39-dossier.md",
+        "sha256": "aacd2a860dd5213de5b0f8c9c30850f0b3874e27cc4e1121bfff7dee08f98f00"
+      }
+    }
+  ]
+}

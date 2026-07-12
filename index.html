@@ -66,7 +66,7 @@
         Formalizing OpenAI Challenges <br>with <span class="gradient-text">Proof Search MCP</span>
       </h1>
       <p class="hero-subtitle">
-        Fully automated, kernel-gated formal verification of the Cycle Double Cover (CDC) theorem. Built step-by-step with the custom proof-search MCP server and capable LLM agents.
+        Agent-driven and verifier-gated formal verification of the Cycle Double Cover (CDC) theorem. Built step-by-step with the custom proof-search MCP server and LLM agents.
       </p>
       <div class="hero-actions">
         <a href="#ledger" class="btn btn-primary" id="btn-explore-ledger">
@@ -87,22 +87,25 @@
       <!-- Quick Metrics Grid -->
       <div class="metrics-grid">
         <div class="metric-card glass">
-          <div class="metric-value" id="val-steps-verified">39</div>
-          <div class="metric-label">Steps Re-derived</div>
+          <div class="metric-value" id="val-steps-verified">39/39</div>
+          <div class="metric-label">Verified Steps</div>
         </div>
         <div class="metric-card glass">
-          <div class="metric-value" id="val-axioms">0</div>
-          <div class="metric-label">Unintended Axioms</div>
+          <div class="metric-value" id="val-rate">Kernel-Only</div>
+          <div class="metric-label">Capstone Closure</div>
         </div>
         <div class="metric-card glass">
-          <div class="metric-value" id="val-rate">100%</div>
-          <div class="metric-label">Lean Kernel Checked</div>
+          <div class="metric-value" id="val-axioms">Standard</div>
+          <div class="metric-label">Axiom Hygiene</div>
         </div>
         <div class="metric-card glass">
           <div class="metric-value" id="val-env">v4.31.0</div>
           <div class="metric-label">Lean Toolchain</div>
         </div>
       </div>
+      <p class="metrics-note" style="color: var(--text-secondary); font-size: 0.88rem; text-align: center; margin-top: 20px; opacity: 0.85; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5;">
+        * Note: Step 02 uses <code>native_decide</code> (extending trust to the native VM compiler), but is non-load-bearing. The final capstone theorem relies solely on standard <code>decide</code>, verifying fully inside the Lean kernel.
+      </p>
     </div>
   </section>
 
@@ -185,7 +188,7 @@
     <div class="section-container">
       <div class="section-header">
         <h2 class="section-title">Formal Audit Checklist</h2>
-        <p class="section-subtitle">Rigorous verification checkpoints, Lean environment configurations, and proof hygiene logs tracked in real-time.</p>
+        <p class="section-subtitle">Rigorous verification checkpoints, Lean environment configurations, and proof hygiene logs snapshot-generated from the audited repository state (commit 11b3e24).</p>
       </div>
 
       <div class="checklist-grid">
@@ -306,6 +309,14 @@
           </ul>
         </div>
       </div>
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="audit_manifest.json" target="_blank" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; margin-left: auto; margin-right: auto; padding: 12px 24px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px; color: var(--cyan);">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          <span style="font-family: var(--font-heading); font-weight: 500; font-size: 0.92rem; color: var(--text-primary);">Download Machine-Readable Audit Manifest (JSON)</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -314,37 +325,37 @@
     <div class="section-container">
       <div class="section-header">
         <h2 class="section-title">The Proof Search MCP Server</h2>
-        <p class="section-subtitle">A custom Model Context Protocol (MCP) server providing deep integration between LLMs and the interactive Lean 4 environment.</p>
+        <p class="section-subtitle">A custom Model Context Protocol (MCP) server providing deep integration between LLMs and the interactive Lean 4 environment (exposing 86 system tools; core workflow endpoints shown below for illustration).</p>
       </div>
 
       <div class="mcp-layout">
         <!-- Interactive Tool Explorer -->
         <div class="mcp-tools-list">
-          <h3 class="subsection-title">Available Tools</h3>
+          <h3 class="subsection-title">Core Endpoints <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">(Conceptual Illustration)</span></h3>
           <div class="tool-items">
-            <div class="tool-item active" data-tool="empirical_search">
-              <span class="tool-name">empirical_search</span>
-              <span class="tool-desc">Conducts search over proof candidates</span>
+            <div class="tool-item active" data-tool="episode_step">
+              <span class="tool-name">episode_step</span>
+              <span class="tool-desc">Submits proof actions to verifier loop</span>
             </div>
-            <div class="tool-item" data-tool="draft">
-              <span class="tool-name">draft</span>
-              <span class="tool-desc">Generates syntax-clean proof structures</span>
+            <div class="tool-item" data-tool="attempt_claim">
+              <span class="tool-name">attempt_claim</span>
+              <span class="tool-desc">Submits proof candidate for validation</span>
+            </div>
+            <div class="tool-item" data-tool="proof_export">
+              <span class="tool-name">proof_export</span>
+              <span class="tool-desc">Renders step verification dossiers</span>
+            </div>
+            <div class="tool-item" data-tool="empirical_search">
+              <span class="tool-name">empirical_search <span style="font-size: 0.72rem; color: var(--purple); font-weight: bold;">(Advisory)</span></span>
+              <span class="tool-desc">Discovers paths and proof candidates</span>
             </div>
             <div class="tool-item" data-tool="formalization_plan">
-              <span class="tool-name">formalization_plan</span>
-              <span class="tool-desc">Creates step-by-step math proof plans</span>
+              <span class="tool-name">formalization_plan <span style="font-size: 0.72rem; color: var(--purple); font-weight: bold;">(Advisory)</span></span>
+              <span class="tool-desc">Tracks manuscript-to-Lean mappings</span>
             </div>
             <div class="tool-item" data-tool="reasoning_log">
-              <span class="tool-name">reasoning_log</span>
-              <span class="tool-desc">Logs and recovers from compilation failures</span>
-            </div>
-            <div class="tool-item" data-tool="lean_declaration_lookup">
-              <span class="tool-name">lean_declaration_lookup</span>
-              <span class="tool-desc">Queries local Lean declarations by name</span>
-            </div>
-            <div class="tool-item" data-tool="mathlib_search_declarations">
-              <span class="tool-name">mathlib_search_declarations</span>
-              <span class="tool-desc">Searches Mathlib for library constants</span>
+              <span class="tool-name">reasoning_log <span style="font-size: 0.72rem; color: var(--purple); font-weight: bold;">(Advisory)</span></span>
+              <span class="tool-desc">Records attempt history and diagnostics</span>
             </div>
           </div>
         </div>
@@ -357,36 +368,44 @@
               <span class="dot"></span>
               <span class="dot"></span>
             </div>
-            <span class="console-title" id="mcp-console-title">tool-spec: empirical_search</span>
+            <span class="console-title" id="mcp-console-title">tool-spec: episode_step</span>
           </div>
           <div class="console-body">
             <div class="console-section">
               <h4 class="console-heading">Description</h4>
               <p class="console-text" id="mcp-tool-description">
-                Performs a stateful, iterative search to find valid proofs. Coordinates with the Lean compiler to verify candidates and branches based on diagnostic feedback.
+                Executes a single step in an ongoing proof-search episode. Submits raw tactic or file modifications to the Lean verifier and returns full compilation feedback, errors, and goal states.
               </p>
             </div>
             <div class="console-section">
               <h4 class="console-heading">Parameters</h4>
               <pre class="console-code" id="mcp-tool-params">{
-  "problem_id": "string (UUID v4 of the target Lean problem)",
-  "strategies": "string[] (e.g. ['aesop', 'omega', 'induction'])",
-  "max_depth": "integer (limiting search tree size)"
+  "episode_id": "string (UUID v4 of the active episode)",
+  "action": {
+    "type": "string ('solve' | 'submit_module')",
+    "proof_term": "string (raw Lean proof block or declaration body)"
+  }
 }</pre>
             </div>
             <div class="console-section">
-              <h4 class="console-heading">Sample Agent Invocation (ZMod 2 Parity)</h4>
+              <h4 class="console-heading">Sample Agent Invocation (Episode Loop Step)</h4>
               <pre class="console-code highlight-json" id="mcp-tool-example">{
-  "caller": "Gemini 3.5 Flash",
-  "mcp_call": "proofsearch/empirical_search",
+  "caller": "Gemini 1.5 Pro / Antigravity",
+  "mcp_call": "proofsearch/episode_step",
   "arguments": {
-    "problem_id": "64ea8680-26c9-4544-acb3-eaf565df0e2e",
-    "strategies": ["by_cases", "simp_all"]
+    "episode_id": "06c72fd1-9e61-44f0-8ec5-93995d204eed",
+    "action": {
+      "type": "solve",
+      "proof_term": "intro V E _ _ _ _ inc f hloop hnz hcons; ...; exact h_result"
+    }
   },
   "response": {
-    "status": "kernel_verified",
-    "attempts": 1,
-    "proof": "intro x y t s hx hy hxy\\ndsimp\\nhave hz : x + y \\u2260 0 := by ...\\nby_cases h0 : s = t <;> simp_all"
+    "status": "terminated",
+    "termination_reason": "root_proved",
+    "verifier_feedback": {
+      "is_valid": true,
+      "errors": []
+    }
   }
 }</pre>
             </div>
@@ -585,7 +604,7 @@
             <code class="meta-value" id="modal-mirror">local_pair_parity</code>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Problem ID:</span>
+            <span class="meta-label">Problem Version ID:</span>
             <code class="meta-value copyable" id="modal-problem-id">64ea8680-26c9-4544-acb3-eaf565df0e2e</code>
           </div>
           <div class="meta-item">
@@ -593,20 +612,50 @@
             <code class="meta-value copyable" id="modal-episode-id">90be1f6b-3408-4362-9711-17380cd615fb</code>
           </div>
           <div class="meta-item">
-            <span class="meta-label">Outcome:</span>
-            <span class="status-badge-verified" id="modal-outcome">kernel_verified</span>
+            <span class="meta-label">Verification:</span>
+            <span class="status-badge-verified" id="modal-outcome">Kernel Verified</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Fidelity Review:</span>
+            <span class="status-badge-attested tooltip-trigger" id="modal-fidelity">Agent-Attested
+              <span class="tooltip-content">Attested via unsafe_dev_attestation. Statement matches paper claims but has not been verified by an independent third-party reviewer.</span>
+            </span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Manual Audit:</span>
+            <span class="status-badge-pending" id="modal-audit-status">Review Pending</span>
+          </div>
+          <div class="meta-item full-width" style="grid-column: 1 / -1; background: rgba(255, 255, 255, 0.01); padding: 12px; border-radius: 6px; border: 1px dashed var(--border-color); margin-top: 6px;">
+            <span class="meta-label" style="display: block; margin-bottom: 4px; color: var(--text-primary); font-weight: 600;">Mathematical Claim (Natural Language):</span>
+            <span class="meta-value-text" id="modal-description" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5; display: block;">Loading claim...</span>
           </div>
         </div>
+        <div class="modal-tabs-bar">
+          <button class="modal-tab active" id="tab-btn-code">Lean Proof Code</button>
+          <button class="modal-tab" id="tab-btn-dossier">Verification Dossier</button>
+        </div>
         
-        <div class="code-viewer-container">
-          <div class="code-viewer-header">
-            <span class="code-filename" id="modal-filename">01-local-pair-parity.lean</span>
-            <div class="code-actions">
-              <a href="#" target="_blank" class="btn-copy-code" id="btn-view-github" style="text-decoration: none; margin-right: 8px;">View on GitHub</a>
-              <button class="btn-copy-code" id="btn-copy-code">Copy Proof</button>
+        <!-- Panel 1: Lean Code -->
+        <div class="modal-panel active" id="modal-panel-code">
+          <div class="code-viewer-container">
+            <div class="code-viewer-header">
+              <span class="code-filename" id="modal-filename">01-local-pair-parity.lean</span>
+              <div class="code-actions">
+                <a href="#" target="_blank" class="btn-copy-code" id="btn-view-github" style="text-decoration: none; margin-right: 8px;">View on GitHub</a>
+                <button class="btn-copy-code" id="btn-copy-code">Copy Proof</button>
+              </div>
+            </div>
+            <pre class="code-pre"><code class="code-block" id="modal-code">-- Lean code here</code></pre>
+          </div>
+        </div>
+
+        <!-- Panel 2: Verification Dossier -->
+        <div class="modal-panel" id="modal-panel-dossier">
+          <div class="dossier-viewer-container">
+            <div id="modal-dossier-content" class="dossier-content">
+              <!-- Dynamically rendered markdown HTML -->
             </div>
           </div>
-          <pre class="code-pre"><code class="code-block" id="modal-code">-- Lean code here</code></pre>
         </div>
       </div>
     </div>
@@ -708,9 +757,15 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
-      <div class="footer-left">
+      <div class="footer-left" style="max-width: 600px;">
         <p>&copy; 2026 OpenAI Proof Formalization Project. Powered by Antigravity AI.</p>
-        <p class="footer-subtext">Independent validation tracked across Mnehmos' distributed agent environment.</p>
+        <p class="footer-subtext" style="margin-top: 8px; font-size: 0.8rem; line-height: 1.4; color: var(--text-muted);">
+          <strong>Disclaimers & Operator Details:</strong><br>
+          • <em>Branding:</em> Independent, unofficial audit and re-derivation of OpenAI’s published CDC formalization. Not affiliated with or endorsed by OpenAI.<br>
+          • <em>Operator:</em> Audit compiled by Claude 3.5 Sonnet / Antigravity AI.<br>
+          • <em>Search Platform:</em> Embodied cognitive workspace agent powered by Antigravity AI.<br>
+          • <em>Model Provenance:</em> Proof-search trajectories constructed using Gemini 1.5 Pro and GPT-4o.
+        </p>
       </div>
       <div class="footer-right">
         <a href="#overview">Back to Top</a>

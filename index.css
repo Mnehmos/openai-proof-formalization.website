@@ -1514,3 +1514,219 @@ section:not(.hero-section) {
   }
 }
 
+/* --- Modal Tabs & Panels --- */
+.modal-tabs-bar {
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+  margin-top: 8px;
+}
+
+.modal-tab {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.modal-tab:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.modal-tab.active {
+  color: var(--cyan);
+  background-color: hsla(180, 100%, 50%, 0.08);
+  border-color: hsla(180, 100%, 50%, 0.3);
+}
+
+.modal-panel {
+  display: none;
+}
+
+.modal-panel.active {
+  display: block;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Dossier Markdown Rendering --- */
+.dossier-viewer-container {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: hsl(222, 24%, 5%);
+  padding: 24px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.dossier-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.dossier-h1 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-top: 8px;
+}
+
+.dossier-h2 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 14px;
+}
+
+.dossier-h3 {
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 8px;
+}
+
+.dossier-p {
+  color: var(--text-secondary);
+}
+
+.dossier-quote {
+  border-left: 3px solid var(--purple);
+  background-color: hsla(270, 95%, 62%, 0.04);
+  padding: 12px 18px;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.dossier-hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 10px 0;
+}
+
+.dossier-list {
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dossier-list-item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dossier-list-item.done {
+  color: var(--text-muted);
+}
+
+.dossier-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.88rem;
+}
+
+.dossier-table th,
+.dossier-table td {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+}
+
+.dossier-table th {
+  background-color: rgba(255, 255, 255, 0.02);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* --- Badges & Tooltips --- */
+.status-badge-attested {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background-color: hsla(35, 100%, 50%, 0.08);
+  border: 1px solid hsla(35, 100%, 50%, 0.25);
+  color: hsl(35, 100%, 65%);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: help;
+  position: relative;
+}
+
+.status-badge-pending {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.tooltip-trigger {
+  position: relative;
+}
+
+.tooltip-content {
+  display: none;
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: hsl(222, 24%, 10%);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  width: 220px;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  text-align: center;
+  font-weight: normal;
+}
+
+.tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: hsl(222, 24%, 10%) transparent transparent transparent;
+}
+
+.tooltip-trigger:hover .tooltip-content {
+  display: block;
+}
+
+
+

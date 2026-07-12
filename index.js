@@ -27,6 +27,144 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnCloseModal = document.getElementById('btn-close-modal');
   const btnCopyCode = document.getElementById('btn-copy-code');
   const btnViewGithub = document.getElementById('btn-view-github');
+  
+  // Tab Bar & Panels
+  const tabBtnCode = document.getElementById('tab-btn-code');
+  const tabBtnDossier = document.getElementById('tab-btn-dossier');
+  const panelCode = document.getElementById('modal-panel-code');
+  const panelDossier = document.getElementById('modal-panel-dossier');
+  const modalDossierContent = document.getElementById('modal-dossier-content');
+  const modalDescription = document.getElementById('modal-description');
+
+  // --- Markdown to HTML Parser ---
+  function parseMarkdown(md) {
+    if (!md) return '<p style="color: var(--text-muted); padding: 12px 0;">No verification dossier available for this step.</p>';
+    const lines = md.split('\n');
+    let html = '';
+    let inList = false;
+    let inCode = false;
+    let inTable = false;
+    
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      
+      // Escape html tags inside text
+      if (!line.trim().startsWith('```') && !inCode) {
+        line = line.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+      
+      // Fenced Code Blocks
+      if (line.trim().startsWith('```')) {
+        if (inCode) {
+          html += '</code></pre>\n';
+          inCode = false;
+        } else {
+          const lang = line.trim().replace('```', '') || 'text';
+          html += `<pre class="code-pre"><code class="code-block language-${lang}">`;
+          inCode = true;
+        }
+        continue;
+      }
+      
+      if (inCode) {
+        html += line + '\n';
+        continue;
+      }
+      
+      // Headers
+      if (line.startsWith('# ')) {
+        html += `<h2 class="dossier-h1">${line.substring(2)}</h2>\n`;
+        continue;
+      }
+      if (line.startsWith('## ')) {
+        html += `<h3 class="dossier-h2">${line.substring(3)}</h3>\n`;
+        continue;
+      }
+      if (line.startsWith('### ')) {
+        html += `<h4 class="dossier-h3">${line.substring(4)}</h4>\n`;
+        continue;
+      }
+      
+      // Horizontal Rule
+      if (line.trim() === '---') {
+        html += '<hr class="dossier-hr">\n';
+        continue;
+      }
+      
+      // Blockquotes
+      if (line.startsWith('> ')) {
+        let qText = line.substring(2)
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/`(.*?)`/g, '<code class="inline-code">$1</code>');
+        html += `<blockquote class="dossier-quote">${qText}</blockquote>\n`;
+        continue;
+      }
+      
+      // Tables
+      if (line.trim().startsWith('|')) {
+        if (!inTable) {
+          html += '<table class="dossier-table"><thead>\n';
+          inTable = true;
+          const cells = line.split('|').map(c => c.trim()).filter((c, idx, arr) => idx > 0 && idx < arr.length - 1);
+          html += '<tr>' + cells.map(c => `<th>${c}</th>`).join('') + '</tr>\n</thead><tbody>\n';
+          continue;
+        } else {
+          if (line.includes('---|')) {
+            continue;
+          }
+          const cells = line.split('|').map(c => c.trim()).filter((c, idx, arr) => idx > 0 && idx < arr.length - 1);
+          const formatCell = cell => cell
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/`(.*?)`/g, '<code class="inline-code">$1</code>');
+          html += '<tr>' + cells.map(c => `<td>${formatCell(c)}</td>`).join('') + '</tr>\n';
+          continue;
+        }
+      } else {
+        if (inTable) {
+          html += '</tbody></table>\n';
+          inTable = false;
+        }
+      }
+      
+      // Unordered lists
+      if (line.trim().startsWith('- ') || line.trim().startsWith('* ')) {
+        if (!inList) {
+          html += '<ul class="dossier-list">\n';
+          inList = true;
+        }
+        let itemText = line.trim().substring(2)
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/`(.*?)`/g, '<code class="inline-code">$1</code>');
+        if (itemText.startsWith('[x]') || itemText.startsWith('[X]')) {
+          html += `<li class="dossier-list-item done"><span class="chk-box">✓</span> ${itemText.substring(3)}</li>\n`;
+        } else if (itemText.startsWith('[ ]')) {
+          html += `<li class="dossier-list-item"><span class="chk-box">☐</span> ${itemText.substring(3)}</li>\n`;
+        } else {
+          html += `<li>${itemText}</li>\n`;
+        }
+        continue;
+      } else {
+        if (inList) {
+          html += '</ul>\n';
+          inList = false;
+        }
+      }
+      
+      // Regular Paragraph
+      if (line.trim() !== '') {
+        let processed = line
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+          .replace(/`(.*?)`/g, '<code class="inline-code">$1</code>');
+        html += `<p class="dossier-p">${processed}</p>\n`;
+      }
+    }
+    
+    if (inList) html += '</ul>\n';
+    if (inTable) html += '</tbody></table>\n';
+    if (inCode) html += '</code></pre>\n';
+    
+    return html;
+  }
 
   // --- Category Classification Helper ---
   function getCategory(num) {
@@ -145,15 +283,35 @@ document.addEventListener('DOMContentLoaded', () => {
     modalMirror.textContent = step.mirror || 'N/A';
     modalProblemId.textContent = step.problemId;
     modalEpisodeId.textContent = step.episodeId;
-    modalOutcome.textContent = step.outcome;
     modalFilename.textContent = step.fileName || `${step.numberStr}-step.lean`;
     
-    // Set GitHub Link dynamically
-    const repoBase = "https://github.com/Mnehmos/llm-driven-proof-search/blob/main/OpenAI%20Proofs/cdc-cycle-double-cover/steps/";
+    // Step 02 VM Trust vs Kernel Verified distinction
+    if (step.number === 2) {
+      modalOutcome.textContent = 'Accept (VM Trust)';
+      modalOutcome.className = 'status-badge-attested';
+    } else {
+      modalOutcome.textContent = 'Kernel Verified';
+      modalOutcome.className = 'status-badge-verified';
+    }
+    
+    // Set natural language claim description
+    modalDescription.textContent = step.naturalLanguage || 'No claim description available for this step.';
+
+    // Set GitHub Link dynamically (pinned to immutable commit sha)
+    const repoBase = "https://github.com/Mnehmos/llm-driven-proof-search/blob/11b3e24d075a88543de278a7ec6691d37c1f7a5f/OpenAI%20Proofs/cdc-cycle-double-cover/steps/";
     btnViewGithub.href = step.fileName ? `${repoBase}${step.fileName}` : "https://github.com/Mnehmos/llm-driven-proof-search";
     
     // Highlight & Render Code
     modalCode.innerHTML = highlightLean(step.code || '-- No Lean proof loaded.');
+    
+    // Render Dossier Markdown
+    modalDossierContent.innerHTML = parseMarkdown(step.dossier);
+
+    // Reset Tabs
+    tabBtnCode.classList.add('active');
+    tabBtnDossier.classList.remove('active');
+    panelCode.classList.add('active');
+    panelDossier.classList.remove('active');
     
     codeModal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -169,6 +327,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Close modal when clicking backdrop
   codeModal.addEventListener('click', (e) => {
     if (e.target === codeModal) closeModal();
+  });
+
+  // Modal Tab Switching
+  tabBtnCode.addEventListener('click', () => {
+    tabBtnCode.classList.add('active');
+    tabBtnDossier.classList.remove('active');
+    panelCode.classList.add('active');
+    panelDossier.classList.remove('active');
+  });
+
+  tabBtnDossier.addEventListener('click', () => {
+    tabBtnDossier.classList.add('active');
+    tabBtnCode.classList.remove('active');
+    panelDossier.classList.add('active');
+    panelCode.classList.remove('active');
   });
 
   // Copy code to clipboard
@@ -203,54 +376,111 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- MCP Tools Showcase Data ---
   const mcpToolsData = {
-    empirical_search: {
-      desc: "Performs a stateful, iterative search to find valid proofs. Coordinates with the Lean compiler to verify candidates and branches based on diagnostic feedback.",
+    episode_step: {
+      desc: "Executes a single step in an ongoing proof-search episode. Submits raw tactic or file modifications to the Lean verifier and returns full compilation feedback, errors, and goal states.",
       params: `{
-  "problem_id": "string (UUID v4 of the target Lean problem)",
-  "strategies": "string[] (e.g. ['aesop', 'omega', 'induction'])",
-  "max_depth": "integer (limiting search tree size)"
+  "episode_id": "string (UUID v4 of the active episode)",
+  "action": {
+    "type": "string ('solve' | 'submit_module')",
+    "proof_term": "string (raw Lean proof block or declaration body)"
+  }
 }`,
       example: `{
-  "caller": "Gemini 3.5 Flash",
-  "mcp_call": "proofsearch/empirical_search",
+  "caller": "Gemini 1.5 Pro / Antigravity",
+  "mcp_call": "proofsearch/episode_step",
   "arguments": {
-    "problem_id": "64ea8680-26c9-4544-acb3-eaf565df0e2e",
-    "strategies": ["by_cases", "simp_all"]
+    "episode_id": "06c72fd1-9e61-44f0-8ec5-93995d204eed",
+    "action": {
+      "type": "solve",
+      "proof_term": "intro V E _ _ _ _ inc f hloop hnz hcons; ...; exact h_result"
+    }
   },
   "response": {
-    "status": "kernel_verified",
-    "attempts": 1,
-    "proof": "intro x y t s hx hy hxy\\ndsimp\\nhave hz : x + y \\u2260 0 := by ...\\nby_cases h0 : s = t <;> simp_all"
+    "status": "terminated",
+    "termination_reason": "root_proved",
+    "verifier_feedback": {
+      "is_valid": true,
+      "errors": []
+    }
   }
 }`
     },
-    draft: {
-      desc: "Generates syntax-clean proof structures. Creates the skeletal structure containing helper lemmas, section scopes, and namespaces ready for compilation.",
+    attempt_claim: {
+      desc: "Submits a finalized Lean proof candidate to the environment's verifier gate. Compiles the full module dependency closure to verify that no 'sorry', 'admit', or unsafe axioms are present.",
       params: `{
-  "problem_id": "string (UUID v4 of the target Lean problem)",
-  "skeleton_outline": "string (High level roadmap or proof sketch)"
+  "problem_id": "string (UUID v4 of the formal problem definition)",
+  "proof_candidate": "string (complete Lean file source code)"
 }`,
       example: `{
-  "caller": "Gemini 3.5 Flash",
-  "mcp_call": "proofsearch/draft",
+  "caller": "Gemini 1.5 Pro",
+  "mcp_call": "proofsearch/attempt_claim",
   "arguments": {
-    "problem_id": "78778b1d-1889-477e-a4ad-66eb22059045",
-    "skeleton_outline": "Isolate ZMod 2 affine cardinality check from the core vertex parity indicator"
+    "problem_id": "7211fcc8-d1d9-422c-aab3-14db222a98b3",
+    "proof_candidate": "import Mathlib; ...; theorem capstone : ... := by ... "
   },
   "response": {
-    "draft_code": "theorem hcard : \\u2200 p h : Fin 3 \\u2192 ZMod 2, h \\u2260 0 \\u2192 (Finset.univ.filter ...).card = 2 := by decide\\n\\ntheorem cubic_even_double_cover : ...",
-    "status": "draft_created"
+    "is_valid": true,
+    "axiom_audit": ["propext", "Classical.choice", "Quot.sound"],
+    "msg": "Proof accepted and checked by Lean kernel checker."
+  }
+}`
+    },
+    proof_export: {
+      desc: "Renders an episode as a structured proof dossier. Formats include full markdown reports, bare Lean source code, redacted public summaries, and structured records for training pipelines.",
+      params: `{
+  "episode_id": "string (UUID v4)",
+  "format": "string ('markdown' | 'lean' | 'public_summary' | 'audit_archive')"
+}`,
+      example: `{
+  "caller": "Claude 3.5 Sonnet / Auditor",
+  "mcp_call": "proofsearch/proof_export",
+  "arguments": {
+    "episode_id": "06c72fd1-9e61-44f0-8ec5-93995d204eed",
+    "format": "markdown"
+  },
+  "response": {
+    "status": "exported",
+    "content": [
+      {
+        "type": "text",
+        "text": "# KERNEL-VERIFIED FORMAL STATEMENT... \\n## Proof tree... \\n## Verified module..."
+      }
+    ]
+  }
+}`
+    },
+    empirical_search: {
+      desc: "Advisory tool. Conducts localized exploratory search over lemma candidates and proof paths using mathematical search heuristics. (Does not formally prove or submit theorems).",
+      params: `{
+  "problem_id": "string (UUID v4 of the target Lean problem)",
+  "search_mode": "string ('lemma_discovery' | 'tactic_exploration')"
+}`,
+      example: `{
+  "caller": "GPT-4o",
+  "mcp_call": "proofsearch/empirical_search",
+  "arguments": {
+    "problem_id": "64ea8680-26c9-4544-acb3-eaf565df0e2e",
+    "search_mode": "lemma_discovery"
+  },
+  "response": {
+    "status": "completed",
+    "discovered_lemmas": [
+      {
+        "statement": "theorem helper : ∀ x : ZMod 2, x + x = 0",
+        "heuristic_score": 0.98
+      }
+    ]
   }
 }`
     },
     formalization_plan: {
-      desc: "Creates detailed, step-by-step mathematical proof plans, breaking a complex paper proof into specific lemmas checkable within Lean's constraints.",
+      desc: "Advisory tool. Registers and tracks step-by-step mathematical proof plans, linking manuscript sections and equations to formal Lean definitions.",
       params: `{
   "manuscript_section": "string (e.g. 'Lemma 2.2')",
   "lean_definitions": "string (definitions of graphs or mappings already in scope)"
 }`,
       example: `{
-  "caller": "Gemini 3.5 Flash",
+  "caller": "Gemini 1.5 Pro",
   "mcp_call": "proofsearch/formalization_plan",
   "arguments": {
     "manuscript_section": "Jaeger-Kilpatrick 8-Flow contraction step",
@@ -266,14 +496,14 @@ document.addEventListener('DOMContentLoaded', () => {
 }`
     },
     reasoning_log: {
-      desc: "Appends and tracks reasoning states, compiling failure logs and compiler diagnostics to trace the history of agent attempts.",
+      desc: "Advisory tool. Records and tracks reasoning states, compiling failure logs, compiler diagnostics, and lessons learned to guide backtracking in search trees.",
       params: `{
   "episode_id": "string (UUID v4)",
   "attempt_index": "integer",
   "log_entry": "string (Details on the compilation issue and fix approach)"
 }`,
       example: `{
-  "caller": "Gemini 3.5 Flash",
+  "caller": "Gemini 1.5 Pro",
   "mcp_call": "proofsearch/reasoning_log",
   "arguments": {
     "episode_id": "e0395b03-697b-420b-a75e-39ef1e388882",
@@ -282,52 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
   },
   "response": {
     "status": "logged"
-  }
-}`
-    },
-    lean_declaration_lookup: {
-      desc: "Queries the local Lean project environment to fetch signatures and locations of user-defined declarations.",
-      params: `{
-  "query": "string (declaration name or fragment)"
-}`,
-      example: `{
-  "caller": "Gemini 3.5 Flash",
-  "mcp_call": "proofsearch/lean_declaration_lookup",
-  "arguments": {
-    "query": "compatibility_solvable"
-  },
-  "response": {
-    "declarations": [
-      {
-        "name": "ProofSearch.compatibility_solvable",
-        "type": "theorem",
-        "signature": "root_theorem : \\u2200 f, ... \\u2192 compatibility_solvable f",
-        "file": "steps/06-lemma-2-2-compatibility-solvable.lean"
-      }
-    ]
-  }
-}`
-    },
-    mathlib_search_declarations: {
-      desc: "Searches Mathlib for library constants, theorems, and definitions that can be reused for the proof.",
-      params: `{
-  "query": "string (search terms)",
-  "fuzzy": "boolean"
-}`,
-      example: `{
-  "caller": "Gemini 3.5 Flash",
-  "mcp_call": "proofsearch/mathlib_search_declarations",
-  "arguments": {
-    "query": "ZMod.univ_card"
-  },
-  "response": {
-    "matches": [
-      {
-        "name": "ZMod.card",
-        "signature": "card (n : \\u2115) : card (ZMod n) = n",
-        "module": "Mathlib.Data.ZMod.Basic"
-      }
-    ]
   }
 }`
     }
