@@ -1411,3 +1411,106 @@ section:not(.hero-section) {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Checklist Section & Grid --- */
+.checklist-section {
+  background-color: hsla(222, 24%, 5%, 0.4);
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.checklist-card {
+  padding: 30px;
+}
+
+.card-icon-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 14px;
+}
+
+.checklist-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--cyan);
+}
+
+.checklist-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.checklist-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.chk-box {
+  color: var(--green);
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.checklist-item code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background-color: rgba(0,0,0,0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--cyan);
+}
+
+/* --- Repository Buttons & Icons --- */
+.btn-github-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.btn-github-nav:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--cyan);
+  color: var(--text-primary);
+}
+
+.github-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+@media (max-width: 1024px) {
+  .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCode = document.getElementById('modal-code');
   const btnCloseModal = document.getElementById('btn-close-modal');
   const btnCopyCode = document.getElementById('btn-copy-code');
+  const btnViewGithub = document.getElementById('btn-view-github');
 
   // --- Category Classification Helper ---
   function getCategory(num) {
@@ -146,6 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
     modalEpisodeId.textContent = step.episodeId;
     modalOutcome.textContent = step.outcome;
     modalFilename.textContent = step.fileName || `${step.numberStr}-step.lean`;
+    
+    // Set GitHub Link dynamically
+    const repoBase = "https://github.com/Mnehmos/llm-driven-proof-search/blob/main/OpenAI%20Proofs/cdc-cycle-double-cover/steps/";
+    btnViewGithub.href = step.fileName ? `${repoBase}${step.fileName}` : "https://github.com/Mnehmos/llm-driven-proof-search";
     
     // Highlight & Render Code
     modalCode.innerHTML = highlightLean(step.code || '-- No Lean proof loaded.');

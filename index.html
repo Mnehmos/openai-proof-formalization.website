@@ -30,12 +30,19 @@
       <nav class="nav-links">
         <a href="#overview" class="nav-link">Overview</a>
         <a href="#tracks" class="nav-link">Audit & Verification</a>
+        <a href="#audit-checklist" class="nav-link">Audit Checklist</a>
         <a href="#mcp-showcase" class="nav-link">Proof Search MCP</a>
         <a href="#cdc-theorem" class="nav-link">CDC Theorem</a>
         <a href="#ledger" class="nav-link">Step Ledger</a>
         <a href="#reasoning" class="nav-link">Agent Monologue</a>
       </nav>
       <div class="header-actions">
+        <a href="https://github.com/Mnehmos/llm-driven-proof-search" target="_blank" class="btn-github-nav" style="margin-right: 14px;">
+          <svg class="github-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; margin-right: 4px; vertical-align: middle;">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+          <span>Repository Home</span>
+        </a>
         <span class="status-pill verified">
           <span class="pulse-dot"></span>
           39/39 Verified
@@ -69,8 +76,11 @@
             <polyline points="12 5 19 12 12 19"/>
           </svg>
         </a>
-        <a href="#mcp-showcase" class="btn btn-secondary" id="btn-view-mcp">
-          <span>MCP Specifications</span>
+        <a href="https://github.com/Mnehmos/llm-driven-proof-search" target="_blank" class="btn btn-secondary" id="btn-view-mcp">
+          <svg class="github-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; margin-right: 4px; vertical-align: middle;">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+          <span>Proof Search Repository</span>
         </a>
       </div>
 
@@ -165,6 +175,135 @@
             </li>
           </ul>
           <button class="btn-card-action primary-btn" id="btn-show-rederivation-stats">View Re-derivation Stats</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audit Checklist Section -->
+  <section class="checklist-section" id="audit-checklist">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Formal Audit Checklist</h2>
+        <p class="section-subtitle">Rigorous verification checkpoints, Lean environment configurations, and proof hygiene logs tracked in real-time.</p>
+      </div>
+
+      <div class="checklist-grid">
+        <!-- Card 1: Axiom & Hygiene Audit -->
+        <div class="checklist-card glass">
+          <div class="card-icon-header">
+            <svg class="checklist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+            <h3 class="checklist-card-title">Axiom Print & Hygiene</h3>
+          </div>
+          <ul class="checklist-items">
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>All 39 steps compiled without <code>sorry</code> or <code>admit</code> definitions.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Audited theorem axiom print strictly matches <code>[propext, Classical.choice, Quot.sound]</code>.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>No <code>unsafe</code> or <code>opaque</code> keywords in the main proof chain.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Step 02 trust boundary isolated (re-derived with plain <code>decide</code> in later core steps).</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Environment Settings -->
+        <div class="checklist-card glass">
+          <div class="card-icon-header">
+            <svg class="checklist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+              <line x1="6" y1="6" x2="6.01" y2="6"/>
+              <line x1="6" y1="18" x2="6.01" y2="18"/>
+            </svg>
+            <h3 class="checklist-card-title">Environment Timestamps</h3>
+          </div>
+          <ul class="checklist-items">
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Track 1 Independent Audit completed: <code>2026-07-11 15:42 UTC</code>.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Track 2 Capstone completed: <code>2026-07-11 17:02 UTC</code>.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Lean Checker environment hash: <code>9e26d28efe88...532cbbc9071a60609025d</code>.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Mathlib import manifest pin: <code>b71c3c9da913...18c3ef555960af7fc</code>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 3: MCP Mechanics Verification -->
+        <div class="checklist-card glass">
+          <div class="card-icon-header">
+            <svg class="checklist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+            <h3 class="checklist-card-title">MCP Mechanics & Session State</h3>
+          </div>
+          <ul class="checklist-items">
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Verified server listTools handshake (no duplicate tool names).</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Dynamic state checkpointing via <code>episode_step</code> reasoning logs.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Automatic verifier gates checking syntax, types, and kernel proof objects.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Append-only diagnostic records preserved under episode <code>06c72fd1-...</code>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 4: Definition Fidelity -->
+        <div class="checklist-card glass">
+          <div class="card-icon-header">
+            <svg class="checklist-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+              <line x1="4" y1="22" x2="4" y2="15"/>
+            </svg>
+            <h3 class="checklist-card-title">Fidelity Review</h3>
+          </div>
+          <ul class="checklist-items">
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Endpoint multigraph mapping (loops counted, parallel edges distinct) verified.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Cut characterization of bridgeless (card != 1) reviewed against standard paper.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Inclusion-minimal even edge cycles (circuit-form) verified.</span>
+            </li>
+            <li class="checklist-item">
+              <span class="chk-box">✓</span>
+              <span>Vertex-ring expansion preserves bridgelessness bounds.</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -462,7 +601,10 @@
         <div class="code-viewer-container">
           <div class="code-viewer-header">
             <span class="code-filename" id="modal-filename">01-local-pair-parity.lean</span>
-            <button class="btn-copy-code" id="btn-copy-code">Copy Proof</button>
+            <div class="code-actions">
+              <a href="#" target="_blank" class="btn-copy-code" id="btn-view-github" style="text-decoration: none; margin-right: 8px;">View on GitHub</a>
+              <button class="btn-copy-code" id="btn-copy-code">Copy Proof</button>
+            </div>
           </div>
           <pre class="code-pre"><code class="code-block" id="modal-code">-- Lean code here</code></pre>
         </div>
