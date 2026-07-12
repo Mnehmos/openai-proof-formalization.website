@@ -1,8 +1,8 @@
 {
   "manifest_version": "1.0.0",
   "audit_date": "2026-07-12",
-  "commit_sha": "f5f710dd890305b7bd91c6de3b815a56871fae43",
-  "release_tag": "v0.3.28",
+  "commit_sha": "eed8b60595f4953a70085d263228df1d829f99ca",
+  "release_tag": "v0.3.29",
   "environment_repository": "https://github.com/Mnehmos/llm-driven-proof-search",
   "website_repository": "https://github.com/Mnehmos/openai-proof-formalization.website",
   "toolchain": "Lean 4.31.0, Mathlib v4.31.0",
@@ -50,10 +50,10 @@
       "mirror_declaration": "local_dual_identity",
       "problem_version_id": "3d5b9cb6-b3a3-4358-95aa-b2e52bb2032b",
       "episode_id": "e77a7f30-368e-412e-82cb-eda4ea51e662",
-      "outcome": "kernel_verified (2026-07-11, 2 attempts)",
+      "outcome": "kernel_verified (2026-07-12 UTC, 2 attempts)",
       "source_file": {
         "name": "02-local-dual-identity-dotproduct.lean",
-        "sha256": "91f29168033896e6b5727694bc40e4989d8cfc1505ba42d1e56795ac713f33e1"
+        "sha256": "b1d4b2787580622711d547da44ac37d8a1f8fefe2b20a9c986ad9a9ae98b13cf"
       },
       "verification_dossier": {
         "name": "step-02-dossier.md",

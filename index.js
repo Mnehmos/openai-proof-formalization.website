@@ -289,8 +289,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set natural language claim description
     modalDescription.textContent = step.naturalLanguage || 'No claim description available for this step.';
 
-    // Set GitHub Link dynamically (pinned to immutable release tag v0.3.28)
-    const repoBase = "https://github.com/Mnehmos/llm-driven-proof-search/blob/v0.3.28/OpenAI%20Proofs/cdc-cycle-double-cover/steps/";
+    // Set GitHub Link dynamically (pinned to immutable release tag v0.3.29)
+    const repoBase = "https://github.com/Mnehmos/llm-driven-proof-search/blob/v0.3.29/OpenAI%20Proofs/cdc-cycle-double-cover/steps/";
     btnViewGithub.href = step.fileName ? `${repoBase}${step.fileName}` : "https://github.com/Mnehmos/llm-driven-proof-search";
     
     // Highlight & Render Code
