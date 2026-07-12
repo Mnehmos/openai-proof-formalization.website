@@ -104,7 +104,7 @@
         </div>
       </div>
       <p class="metrics-note" style="color: var(--text-secondary); font-size: 0.88rem; text-align: center; margin-top: 20px; opacity: 0.85; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5;">
-        * Note: Step 02 uses <code>native_decide</code> (extending trust to the native VM compiler), but is non-load-bearing. The final capstone theorem relies solely on standard <code>decide</code>, verifying fully inside the Lean kernel.
+        * Note: Step 02 was successfully re-verified using standard Lean kernel rules (via <code>rfl</code>), removing the legacy <code>native_decide</code> trust warning and ensuring Track 2 is verified unconditionally in the Lean kernel.
       </p>
     </div>
   </section>

@@ -21,9 +21,9 @@
       "Quot.sound"
     ],
     "step_02_native_decide": {
-      "status": "native_decide used",
-      "is_load_bearing": false,
-      "capstone_dependency_chain": "does not depend on Step 02"
+      "status": "fully resolved, verified with standard Lean kernel rules (rfl)",
+      "is_load_bearing": true,
+      "capstone_dependency_chain": "verified unconditionally"
     }
   },
   "steps": [
@@ -48,15 +48,15 @@
       "title": "Local dual identity, dot-product form",
       "mirror_declaration": "local_dual_identity",
       "problem_version_id": "3d5b9cb6-b3a3-4358-95aa-b2e52bb2032b",
-      "episode_id": "23b209f0-a31f-40be-8ec4-429ebbfa56d9",
-      "outcome": "kernel_verified (2026-07-11) \u26a0 uses `native_decide`",
+      "episode_id": "e77a7f30-368e-412e-82cb-eda4ea51e662",
+      "outcome": "kernel_verified (2026-07-11, 2 attempts)",
       "source_file": {
         "name": "02-local-dual-identity-dotproduct.lean",
-        "sha256": "dfd65fc83b26e4a659c5c70d69b8fb032d37e651b0cc36c73583eee748b3cf7b"
+        "sha256": "91f29168033896e6b5727694bc40e4989d8cfc1505ba42d1e56795ac713f33e1"
       },
       "verification_dossier": {
         "name": "step-02-dossier.md",
-        "sha256": "7a67221380bbf0d43df2bfedfbd0a2d584273c43b93a3742fe45acc8bdb65389"
+        "sha256": "86467b7e11c1ba863324f54d8d2c5f527fc2bba38c5c3f0d0513a9d6efeef612"
       }
     },
     {
